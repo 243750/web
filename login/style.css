@@ -1,0 +1,195 @@
+.login {
+  background-color: #ffffff;
+  overflow: hidden;
+  width: 100%;
+  min-width: 1440px;
+  min-height: 900px;
+  position: relative;
+}
+
+/* Imagen de fondo */
+.login .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1550px;
+  height: 900px;
+  object-fit: cover;
+}
+
+/* Animación de aparición suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rectángulo del login */
+.login .rectangle {
+  position: absolute;
+  top: 22px;
+  left: 435px;
+  width: 568px;
+  height: 864px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  animation: fadeIn 1.2s ease-out;
+}
+
+/* Elementos decorativos */
+.login .arrow-down-sign-to {
+  position: absolute;
+  top: 861px;
+  left: 1406px;
+  width: 25px;
+  height: 25px;
+}
+
+.login .img {
+  position: absolute;
+  top: 22px;
+  left: 1411px;
+  width: 25px;
+  height: 25px;
+}
+
+.login .div {
+  position: absolute;
+  top: 66px;
+  left: 1415px;
+  width: 17px;
+  height: 138px;
+  background-color: #6b1fad;
+}
+
+.login .rectangle-2 {
+  position: absolute;
+  top: 1218px;
+  left: 1398px;
+  width: 17px;
+  height: 138px;
+  background-color: #6b1fad;
+}
+
+/* Contenedor del formulario */
+.login .group {
+  position: absolute;
+  top: 60px;
+  left: 520px;
+  width: 420px;
+  text-align: center;
+}
+
+/* Logo */
+.login .UPCREWLOGO {
+  width: 200px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Título principal */
+.login h1.text-wrapper {
+  font-family: "Permanent Marker", cursive;
+  font-size: 48px;
+  color: #6b1fad;
+  margin-bottom: 30px;
+}
+
+/* Estructura del formulario */
+.login form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Etiquetas */
+.login label {
+  font-family: "Philosopher", sans-serif;
+  font-size: 18px;
+  color: #000000;
+  align-self: flex-start;
+  margin-left: 20px;
+}
+
+/* Inputs con validación visual */
+.login input {
+  width: 90%;
+  height: 35px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login input:focus {
+  border-color: #6b1fad;
+  box-shadow: 0 0 5px rgba(107, 31, 173, 0.5);
+  outline: none;
+}
+
+.login input:invalid {
+  border-color: black;
+}
+
+.login input:valid {
+  border-color: #6b1fad;
+}
+
+/* Botones */
+.login .rectangle-3 {
+  width: 60%;
+  height: 45px;
+  background-color: #6b1fad;
+  border: none;
+  color: white;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+.login .rectangle-3:hover {
+  transform: scale(1.05);
+  background-color: #7c2cd1;
+}
+
+.login .rectangle-4 {
+  width: 50%;
+  height: 40px;
+  background-color: #ab8c7a;
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+.login .rectangle-4:hover {
+  transform: scale(1.05);
+  background-color: #c7a792;
+}
+
+/* Enlace inferior */
+.login .text-wrapper-4 {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Mensaje de error */
+#msg {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}

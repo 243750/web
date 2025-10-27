@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login - Crew</title>
+  </head>
+  <body>
+    <div class="login">
+      <img class="image" src="img/imagenfondo.png" alt="Fondo Crew" />
+
+      <!-- Panel blanco -->
+      <div class="rectangle"></div>
+
+      <!-- Contenido del formulario -->
+      <div class="group">
+        <img class="UPCREWLOGO" src="img/UPCREWLOGO.png" alt="Logo Crew" />
+
+        <h1 class="text-wrapper">Iniciar Sesión</h1>
+
+        <form id="loginForm">
+          <label class="text-wrapper-2" for="email">Dirección de correo electrónico</label>
+          <input type="email" id="email" placeholder="Ej. usuario@crew.com" required />
+
+          <label class="text-wrapper-3" for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="********" required />
+
+          <button type="submit" class="rectangle-3 text-wrapper-6">Entrar</button>
+          <button type="button" id="btnRegister" class="rectangle-4 text-wrapper-5">Registrarme</button>
+        </form>
+
+        <a href="#" class="text-wrapper-4">¿Olvidaste tu contraseña?</a>
+        <p id="msg"></p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
