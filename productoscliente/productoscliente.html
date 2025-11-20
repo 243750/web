@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Crew</title>
+
+  <!-- FUENTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="productoscliente.css">
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+<div id="navbarCliente"></div>
+<script src="../navbarcliente/navbarcliente.js"></script>
+
+    <!-- ===================== TÍTULO ===================== -->
+  <h1 class="titulo" id="tituloProductos">PRODUCTOS</h1>
+
+
+  <!-- ================= FILTROS ================= -->
+<!-- MATERIAL -->
+<select id="filtroMaterial" class="filtro-select">
+  <option value="">Materiales</option>
+  <option value="1">Algodón</option>
+  <option value="2">Poliéster</option>
+</select>
+
+<!-- INSTITUCIÓN -->
+<select id="filtroInstitucion" class="filtro-select">
+  <option value="">Institución</option>
+  <option value="1">UNACH</option>
+  <option value="2">UNICACH</option>
+  <option value="3">UP</option>
+  <option value="4">TEC</option>
+</select>
+
+<!-- CATEGORÍA -->
+<select id="filtroCategoria" class="filtro-select">
+  <option value="">Categoría</option>
+  <option value="1">Casual</option>
+  <option value="2">Deportivo</option>
+  <option value="3">Formal</option>
+</select>
+
+
+  <!-- ================= PRODUCTOS ================= -->
+  <section class="productos-container" id="productosContainer"></section>
+
+  <!-- JS -->
+<script src="scriptproductoscliente.js" defer></script>
+
+</body>
+</html>
+

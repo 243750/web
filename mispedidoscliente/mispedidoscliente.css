@@ -1,0 +1,352 @@
+/* =================== RESET =================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Actor", sans-serif;
+  background: #fafafa;
+  color: #333;
+}
+
+/* =================== NAVBAR (MISMO ESTILO DE SIEMPRE) =================== */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: "Permanent Marker";
+  font-size: 1.8rem;
+  color: #6b1fad;
+  text-decoration: none;
+}
+
+/* Categoría */
+.category-area {
+  position: relative;
+}
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Philosopher";
+  font-size: 0.95rem;
+}
+.icon-category {
+  width: 20px;
+  height: 20px;
+}
+
+.category-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  border-radius: 8px;
+  z-index: 1000;
+}
+.category-dropdown.show {
+  display: block;
+}
+.category-dropdown a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #333;
+}
+.category-dropdown a:hover {
+  background: #f7f7f7;
+}
+
+/* Buscador */
+.search-container {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  max-width: 900px;
+}
+.search-container input {
+  flex: 1;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+.search-btn {
+  padding: 8px 20px;
+  background: #6b1fad;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Iconos derecha */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.icon {
+  width: 24px;
+  cursor: pointer;
+}
+
+/* Cuenta dropdown */
+.cuenta-area {
+  position: relative;
+}
+.cuenta-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.cuenta-btn img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+.cuenta-dropdown {
+  display: none;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  width: 160px;
+  z-index: 1000;
+}
+.cuenta-dropdown.show {
+  display: block;
+}
+.cuenta-dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+.logout {
+  color: #e14b4b;
+}
+
+/* =================== CONTENIDO "MIS PEDIDOS" =================== */
+.contenido {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.titulo {
+  text-align: center;
+  font-family: "Permanent Marker";
+  font-size: 42px;
+  color: #5b0bb5;
+  margin-bottom: 30px;
+}
+
+/* Tarjeta de pedido */
+.pedido-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+/* Fecha + vendedor */
+.pedido-header {
+  font-family: "Philosopher";
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+/* Cuerpo */
+.pedido-body {
+  display: flex;
+  gap: 20px;
+}
+
+/* Imagen */
+.pedido-img {
+  width: 170px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Texto */
+.pedido-info {
+  flex: 1;
+}
+
+.estado {
+  font-size: 24px;
+  margin-bottom: 4px;
+  font-family: "Philosopher";
+}
+
+.estado.proceso {
+  color: #ff8b00;
+}
+
+.estado.entregado {
+  color: #0ea010;
+}
+
+.entrega {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.detalle {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.total {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* Sin pedidos */
+.sin-pedidos {
+  text-align: center;
+  margin-top: 40px;
+  color: #555;
+  font-size: 18px;
+}
+
+.oculto {
+  display: none;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 700px) {
+  .pedido-body {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .pedido-img {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+.estado {
+  font-family: 'Philosopher';
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+
+.estado.proceso {
+  color: #ff8b00; /* naranja */
+}
+
+.estado.entregado {
+  color: #27ae60; /* verde */
+}
+
+.estado.cancelado {
+  color: #e63946; /* rojo */
+}
+
+.estado.otro {
+  color: #555;
+}
+
+.btn-voucher {
+  margin-top: 14px;
+  background: #6b1fad;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Philosopher';
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.btn-voucher:hover {
+  background: #4a1186;
+  transform: translateY(-2px);
+}
+
+/* --- MODAL --- */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+}
+
+.modal {
+  background: white;
+  width: 430px;
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0,0,0,0.25);
+  animation: pop .25s ease;
+}
+
+.modal h2 {
+  font-family: "Permanent Marker";
+  color: #6b1fad;
+  margin-bottom: 10px;
+}
+
+.tarjeta {
+  background: linear-gradient(135deg, #6b1fad, #9f60ff);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 15px auto;
+  text-align: left;
+  font-family: 'Philosopher';
+}
+
+.tarjeta-numero {
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+}
+
+.input-file {
+  margin-top: 20px;
+}
+
+.btn-subir {
+  margin-top: 15px;
+  background: #6b1fad;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn-subir:hover {
+  background: #4a1186;
+}

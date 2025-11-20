@@ -1,0 +1,242 @@
+/* ========================== */
+/* RESETEO Y BASE GENERAL */
+/* ========================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Actor', sans-serif; background-color: #fff; color: #333; }
+
+/* ========================== */
+/* NAVBAR */
+/* ========================== */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.logo {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+  cursor: pointer;
+}
+.logo:hover { color: #5827c0; }
+
+/* === Botón de Categoría === */
+.category-area { position: relative; }
+.category-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: none; border: none; cursor: pointer;
+  font-size: .95rem; font-family: 'Philosopher', sans-serif;
+}
+.icon-category { width: 20px; height: 20px; object-fit: contain; }
+.category-dropdown {
+  display: none; position: absolute; top: 110%; left: 0; min-width: 200px; background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12); border-radius: 8px; z-index: 1000;
+}
+.category-dropdown.show { display: block; }
+.category-dropdown a {
+  display: block; padding: 10px 14px; text-decoration: none; color: #333;
+  font-size: .92rem; transition: .2s;
+}
+.category-dropdown a:hover { background: #f7f7f7; }
+
+/* === Barra de búsqueda === */
+.search-container { flex: 1; display: flex; gap: 10px; max-width: 900px; }
+.search-container input {
+  flex: 1; padding: 8px 15px; border: 1px solid #ddd; border-radius: 20px; font-size: .95rem;
+}
+.search-btn {
+  padding: 8px 20px; background: #6B1FAD; color: #fff; border: none; border-radius: 20px;
+  cursor: pointer; font-weight: 600; transition: .2s;
+}
+.search-btn:hover { background: #5827c0; }
+
+/* === Íconos de navegación (Entrar, Favoritos, Carrito) === */
+.nav-icons { display: flex; align-items: center; gap: 20px; margin-left: auto; }
+.icon { width: 24px; height: 24px; cursor: pointer; transition: .2s; }
+.icon:hover { transform: scale(1.1); }
+.nav-text { color: #333; font-family: 'Philosopher', sans-serif; text-decoration: none; }
+.nav-text:hover { color: #6B1FAD; }
+
+/* ========================== */
+/* SECCIÓN DE BANNERS */
+/* ========================== */
+.banner-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin: 40px;
+}
+
+/* === Banner izquierdo (Texto + Botón “Únete”) === */
+.banner-left {
+  background: #e4b0ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  padding: 25px 30px;
+  height: 300px; /* 🔧 Ajuste de tamaño uniforme */
+}
+.banner-text h2 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.banner-text p { color: #fff; margin-bottom: 15px; }
+.join-btn {
+  background: #fff;
+  color: #6B1FAD;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Philosopher', sans-serif;
+  transition: 0.2s;
+}
+.join-btn:hover { background: #6B1FAD; color: #fff; }
+
+.banner-img {
+  width: 145px; /* 🔧 Reducción del tamaño de imagen */
+  border-radius: 10px;
+}
+
+/* === Banner derecho (Descubre lo nuevo) === */
+.banner-right {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  height: 300px; /* 🔧 Igual tamaño que el banner izquierdo */
+}
+.banner-full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.banner-overlay {
+  position: absolute;
+  bottom: 15px; right: 20px;
+  font-family: 'Permanent Marker', cursive;
+  color: white;
+  font-size: 1.7rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+/* ========================== */
+/* SECCIÓN VENDEDORES */
+/* ========================== */
+.vendors-section {
+  padding: 30px 50px;
+}
+.vendors-section h3 {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+.vendors-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+.vendor-card {
+  text-align: center;
+  cursor: pointer;
+  transition: transform .2s;
+}
+.vendor-card:hover { transform: scale(1.05); }
+.vendor-circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #eee;
+  margin-bottom: 8px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+.vendor-circle:hover { border: 2px solid #6B1FAD; }
+.vendor-name {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1rem;
+  color: #333;
+}
+
+.producto-card {
+  cursor: pointer;
+}
+
+.producto-card * {
+  pointer-events: none;
+}
+
+.producto-card:hover {
+  transform: translateY(-10px) rotate(-1.5deg);
+}
+/* ========================== */
+/* BASE */
+/* ========================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Actor', sans-serif; background: #fff; color: #333; }
+
+/* ========================== */
+/* GRID DE PRODUCTOS PUBLICO */
+/* ========================== */
+
+#productosContainer {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px;
+  padding: 0 40px;
+}
+
+/* Tarjeta limpia SIN animaciones */
+.producto-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+/* Imagen con tamaño correcto */
+.producto-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Textos */
+.producto-nombre {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+  margin-top: 14px;
+}
+
+.producto-precio {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6B1FAD;
+  margin-top: 6px;
+}
+
+.producto-vendedor {
+  margin-top: 4px;
+  font-size: .9rem;
+  color: #666;
+}
+
+/* Iconos públicos (no deben existir, pero por si acaso) */
+.iconos-inferiores { display: none !important; }

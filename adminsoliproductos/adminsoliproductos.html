@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solicitudes de Productos - Crew</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="adminsoliproductos.css" />
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="home.html" class="logo">CREW</a>
+
+    <div class="category-area">
+      <button class="category-btn" id="categoryBtn" aria-expanded="false" aria-controls="categoryMenu">
+        <img src="img/iconocategoria.png" alt="Categoría" class="icon-category">
+        Categoría
+      </button>
+      <div id="categoryMenu" class="category-dropdown" role="menu"></div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Buscar productos..." />
+      <button class="search-btn">Buscar</button>
+    </div>
+
+    <div class="nav-icons">
+      <div class="dropdown">
+        <img src="img/icononotificacion.png" alt="Notificaciones" class="icon" id="notif-btn" aria-expanded="false" aria-controls="notif-dropdown">
+        <div class="dropdown-content" id="notif-dropdown" role="menu">
+          <p><strong>🔔 Notificaciones</strong></p>
+          <a href="#">Nuevo registro de vendedor</a>
+          <a href="#">Producto pendiente de aprobación</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <img src="img/iconoperfilnuevo.png" alt="Perfil" class="icon" id="profile-btn" aria-expanded="false" aria-controls="profile-dropdown">
+        <div class="dropdown-content" id="profile-dropdown" role="menu">
+          <a href="#">Vendedores</a>
+          <a href="#">Productos</a>
+          <a href="#">Configuración de la cuenta</a>
+          <a href="#">Salir</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title">SOLICITUDES DE PRODUCTOS</h1>
+    <div class="product-list" id="productList">
+      <p class="no-products">No hay solicitudes de productos pendientes.</p>
+    </div>
+  </main>
+
+  <script src="scriptadminsoliproductos.js" defer></script>
+</body>
+</html>

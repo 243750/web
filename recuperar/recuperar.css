@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  font-family: 'Actor', sans-serif;
+  background-color: #f7f7f7;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.recuperar {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ===== IMAGEN DE FONDO ===== */
+.image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* ===== PANEL BLANCO ===== */
+.rectangle {
+  position: relative;
+  background-color: #fff;
+  border-radius: 14px;
+  padding: 40px 50px;
+  width: 380px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  text-align: center;
+}
+
+/* ===== LOGO Y TITULO ===== */
+.UPCREWLOGO {
+  width: 110px;
+  margin-bottom: 15px;
+}
+
+.text-wrapper {
+  font-family: 'Permanent Marker', cursive;
+  color: #6B1FAD;
+  font-size: 1.9rem;
+  margin-bottom: 5px;
+}
+
+.desc {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* ===== FORMULARIO ===== */
+.text-wrapper-2 {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+/* ===== BOTONES ===== */
+.rectangle-3 {
+  width: 100%;
+  background-color: #6B1FAD;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Philosopher', sans-serif;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+}
+.rectangle-3:hover {
+  background-color: #5827c0;
+}
+
+.rectangle-4 {
+  width: 100%;
+  background-color: #e5e5e5;
+  border: none;
+  color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+}
+.rectangle-4:hover {
+  background-color: #ccc;
+}
+
+/* ===== MENSAJES ===== */
+#msg {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #333;
+}

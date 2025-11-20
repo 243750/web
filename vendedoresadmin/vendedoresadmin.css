@@ -1,0 +1,303 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  font-family: 'Actor', sans-serif;
+  color: #333;
+}
+
+/* ================= NAVBAR (IGUAL QUE HOMEADMIN) ================= */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: 'Permanent Marker';
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.perfil-area {
+  position: relative;
+  cursor: pointer;
+}
+
+.perfil-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #6B1FAD50;
+}
+
+/* Dropdown */
+.perfil-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  min-width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+  overflow: hidden;
+}
+
+.perfil-dropdown a {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Philosopher';
+}
+
+.perfil-dropdown a:hover {
+  background: #f3e7ff;
+  color: #6B1FAD;
+}
+
+.logout {
+  color: #E14B4B !important;
+}
+
+/* Mostrar dropdown */
+.perfil-area.show #perfilMenu {
+  display: block;
+}
+
+/* ================= CONTENIDO ================= */
+.main-wrapper {
+  padding: 30px 40px 60px;
+}
+
+/* Título */
+.titulo {
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.3rem;
+  color: #6B1FAD;
+  margin-top: 10px;
+}
+
+/* Botón Solicitudes */
+.solicitudes-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0 35px;
+}
+
+.btn-solicitudes {
+  background: #6B1FAD;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: 0 6px 12px rgba(0,0,0,.18);
+}
+
+.btn-solicitudes:hover {
+  transform: translateY(-2px);
+  background: #561596;
+  box-shadow: 0 10px 18px rgba(0,0,0,.22);
+}
+
+/* ================= VENDEDOR CÍRCULOS ================= */
+.vendors-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 45px;
+}
+
+.vendor-card {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  cursor: default;
+  transition: transform .25s ease, filter .25s ease;
+}
+
+.vendor-card:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.05);
+}
+
+.vendor-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-color: #eee;
+  border: 3px solid #6B1FAD40;
+}
+
+/* Nombre del vendedor */
+.vendor-name {
+  margin-top: 12px;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* Icono de suspender (chiquito y cool) */
+.suspend-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #111;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,.15);
+}
+
+.suspend-btn span {
+  user-select: none;
+}
+
+.suspend-btn:hover {
+  transform: scale(1.08) translateY(-1px);
+  background: #ffe5e5;
+  border-color: #E14B4B;
+}
+
+/* ================= MODAL SUSPENDER ================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px 30px;
+  width: 90%;
+  max-width: 380px;
+  border-radius: 14px;
+  text-align: center;
+  font-family: 'Philosopher', sans-serif;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  animation: pop .25s ease;
+}
+
+.modal-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #6B1FAD;
+}
+
+.modal-content p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-cancelar,
+.btn-confirmar {
+  flex: 1;
+  padding: 9px 0;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.95rem;
+}
+
+.btn-cancelar {
+  background: #aaa;
+  color: #fff;
+}
+
+.btn-confirmar {
+  background: #E14B4B;
+  color: #fff;
+}
+
+.btn-confirmar:hover {
+  background: #c62828;
+}
+
+@keyframes pop {
+  from { transform: scale(.85); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ================= TOAST ================= */
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  min-width: 220px;
+  max-width: 320px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #333;
+  color: #fff;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 3000;
+}
+
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.toast.success {
+  background: #2e7d32;
+}
+
+.toast.error {
+  background: #c62828;
+}

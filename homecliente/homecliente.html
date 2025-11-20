@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Cliente - Crew</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS HOME -->
+  <link rel="stylesheet" href="homecliente.css">
+
+  <!-- CSS NAVBAR DINÁMICO -->
+  <link rel="stylesheet" href="../navbarcliente/navbarcliente.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR DINÁMICO -->
+  <div id="navbarCliente"></div>
+  <script src="../navbarcliente/navbarcliente.js"></script>
+
+
+  <!-- BANNERS -->
+  <section class="banner-container">
+    <div class="banner-left">
+      <div class="banner-text">
+        <h2>Bienvenido a Crew</h2>
+        <p>Explora productos únicos creados por diferentes vendedores.</p>
+      </div>
+      <img src="img/modelounete.png" class="banner-img">
+    </div>
+
+    <div class="banner-right" id="discoverBtn" role="button" tabindex="0">
+      <img src="img/modelosdescubre.png" alt="Descubre lo nuevo" class="banner-full">
+      <div class="banner-overlay">Descubre lo nuevo</div>
+    </div>
+  </section>
+
+  <!-- VENDEDORES -->
+  <section class="vendors-section">
+    <h3>Explorar por vendedores</h3>
+    <div class="vendors-container" id="vendorsContainer"></div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <main>
+    <h1 class="titulo">Productos Destacados</h1>
+    <section class="productos-container" id="productosContainer"></section>
+  </main>
+
+  <!-- SCRIPT HOME -->
+  <script src="scripthomecliente.js"></script>
+
+</body>
+</html>

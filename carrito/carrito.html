@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Carrito - Crew</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="carrito.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbarCliente"></div>
+  <script src="../navbarcliente/navbarcliente.js"></script>
+
+  <!-- ======================= MODAL DE CONFIRMACIÓN ======================= -->
+<div id="modalEliminar" class="modal-oculto">
+  <div class="modal-contenido">
+    <h3>¿Eliminar producto?</h3>
+    <p>Esta acción no se puede deshacer.</p>
+
+    <div class="modal-botones">
+      <button id="btnCancelarModal" class="modal-cancelar">Cancelar</button>
+      <button id="btnConfirmarModal" class="modal-confirmar">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- CONTENIDO -->
+  <main class="carrito-main">
+    <h1 class="carrito-titulo">MI CARRITO</h1>
+
+    <!-- Items -->
+    <section id="carritoContainer" class="carrito-container"></section>
+
+    <!-- Carrito vacío -->
+    <section id="carritoVacio" class="carrito-vacio oculto">
+      <p>Tu carrito está vacío.</p>
+      <button id="btnIrProductos" class="btn-ir-productos">Ver productos</button>
+    </section>
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- JS -->
+  <script src="scriptcarrito.js"></script>
+
+</body>
+</html>

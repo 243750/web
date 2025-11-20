@@ -1,0 +1,369 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Actor', sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+/* ======================= NAVBAR ======================= */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+  cursor: pointer;
+}
+.logo:hover {
+  color: #5827c0;
+}
+
+/* Categoría */
+.category-area {
+  position: relative;
+}
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: .95rem;
+  font-family: 'Philosopher', sans-serif;
+}
+.icon-category {
+  width: 20px;
+  height: 20px;
+}
+
+.category-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  border-radius: 8px;
+  z-index: 1000;
+}
+.category-dropdown.show { display: block; }
+.category-dropdown a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #333;
+  font-size: .92rem;
+  transition: .2s;
+}
+.category-dropdown a:hover {
+  background: #f7f7f7;
+}
+
+/* Buscador */
+.search-container {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  max-width: 900px;
+}
+.search-container input {
+  flex: 1;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+.search-btn {
+  padding: 8px 20px;
+  background: #6B1FAD;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.search-btn:hover {
+  background: #5827c0;
+}
+
+/* Iconos derecha */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;
+}
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+/* Cuenta dropdown (sin borde feo del botón) */
+.cuenta-area {
+  position: relative;
+}
+.cuenta-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.cuenta-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  width: 170px;
+}
+.cuenta-dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+}
+.cuenta-dropdown a:hover {
+  background: #f7f7f7;
+}
+.logout {
+  color: #E14B4B;
+}
+
+/* ================== CONTENIDO PRODUCTO ================== */
+.producto-container {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  padding: 40px 60px;
+}
+
+/* Caja de imagen */
+.producto-imagen-box {
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.producto-imagen-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.producto-img {
+  width: 100%;
+  max-width: 420px;
+  height: 420px;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* Info */
+.producto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vendedor-titulo {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.1rem;
+  color: #6B1FAD;
+  margin-bottom: 10px;
+}
+
+.precio {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.producto-nombre {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+/* Labels y valores */
+.label {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #777;
+  margin-top: 6px;
+}
+.value {
+  font-size: .95rem;
+  margin-bottom: 2px;
+}
+
+/* Opciones */
+.opciones {
+  display: flex;
+  gap: 25px;
+  margin: 16px 0;
+}
+.opciones select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 120px;
+}
+
+/* Entrega */
+.entrega {
+  font-size: .85rem;
+  color: #8a8a8a;
+  margin-bottom: 16px;
+}
+
+/* Botones */
+.btn-comprar,
+.btn-carrito {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #6B1FAD;
+  cursor: pointer;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  transition: background .2s, color .2s, transform .1s;
+}
+
+.btn-comprar {
+  background: #6B1FAD;
+  color: #fff;
+}
+.btn-comprar:hover {
+  background: #5827c0;
+  transform: translateY(-1px);
+}
+
+.btn-carrito {
+  background: #fff;
+  color: #6B1FAD;
+}
+.btn-carrito:hover {
+  background: #f0e3ff;
+  transform: translateY(-1px);
+}
+
+/* Favoritos */
+.favorito-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.icon-heart {
+  width: 22px;
+  height: 22px;
+}
+.favorito-text {
+  font-size: .9rem;
+  letter-spacing: .5px;
+}
+
+/* Estado favorito */
+.favorito-box.activo .favorito-text {
+  color: #e63946;
+}
+
+/* Responsive básico */
+@media (max-width: 900px) {
+  .producto-container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .producto-imagen-box {
+    order: -1;
+  }
+}
+
+/* ===============================
+   ANIMACIÓN CHECK AÑADIDO CARRITO
+================================ */
+
+.add-cart-check {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  padding: 40px 60px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  font-family: 'Philosopher';
+  opacity: 0;
+  transition: all .3s ease;
+  z-index: 999999;
+}
+
+.add-cart-check.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.check-circle {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: #6B1FAD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(107, 31, 173, 0.7);
+  animation: pop .35s ease;
+}
+
+.check-mark {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.check-text {
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+/* Animación POP */
+@keyframes pop {
+  0% { transform: scale(0.4); opacity: 0; }
+  80% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Ocultarlo */
+.oculto {
+  display: none;
+}

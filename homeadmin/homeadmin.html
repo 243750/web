@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Admin - Crew</title>
+
+  <!-- FUENTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="homeadmin.css">
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ADMIN ================= -->
+  <header class="navbar">
+    <a href="homeadmin.html" class="logo">CREW</a>
+
+    <div class="nav-right">
+      <div class="perfil-area">
+        <img id="imgPerfilAdmin" class="perfil-img" src="img/iconoperfilnuevo.png" alt="Admin">
+
+    <div id="perfilMenu" class="perfil-dropdown">
+    <a href="../vendedoresadmin/vendedoresadmin.html">Vendedores</a>
+    <a href="../productosadmin/productosadmin.html">Productos</a>
+    <a href="../perfiladmin/perfiladmin.html">Mi perfil</a>
+    <a id="logoutBtn" class="logout">Cerrar sesión</a>
+    </div>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= BANNERS ================= -->
+  <section class="banner-container">
+    <div class="banner-left">
+      <div class="banner-text">
+        <h2>Panel de Control</h2>
+        <p>Gestiona vendedores, productos y actividades del sistema.</p>
+      </div>
+      <img src="../homecliente/img/modelounete.png" class="banner-img">
+    </div>
+
+    <div class="banner-right">
+      <img src="../homecliente/img/modelosdescubre.png" class="banner-full">
+      <div class="banner-overlay">Panel general</div>
+    </div>
+  </section>
+
+
+  <!-- ================= VENDEDORES ================= -->
+  <section class="vendors-section">
+    <h3>Vendedores del sistema</h3>
+    <div class="vendors-container" id="vendorsContainer"></div>
+  </section>
+
+
+  <!-- ================= PRODUCTOS ================= -->
+  <main>
+    <h1 class="titulo">Productos Registrados</h1>
+    <section class="productos-container" id="productosContainer"></section>
+  </main>
+
+
+  <!-- JS -->
+  <script src="scripthomeadmin.js"></script>
+
+</body>
+</html>

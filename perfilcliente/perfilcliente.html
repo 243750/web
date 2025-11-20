@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil - Crew</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="perfilcliente.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR DINÁMICO REAL -->
+  <div id="navbarCliente"></div>
+  <script src="../navbarcliente/navbarcliente.js"></script>
+
+  <!-- ======================= PERFIL ======================= -->
+  <main class="perfil-container">
+
+    <h1 class="titulo">MI CUENTA</h1>
+
+    <!-- FOTO + NOMBRE + CORREO -->
+    <div class="foto-box">
+      <div class="foto-circle"></div>
+
+      <h2 id="usernameTop">Cargando...</h2>
+      <p id="emailTop">Cargando...</p>
+    </div>
+
+    <!-- FORMULARIO -->
+    <form class="perfil-form">
+      <label>Correo electrónico</label>
+      <input type="email" id="emailInput">
+
+      <label>Nombre de usuario</label>
+      <input type="text" id="usernameInput">
+
+      <button type="button" id="btnGuardar">Guardar</button>
+    </form>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="perfilcliente.js"></script>
+</body>
+</html>

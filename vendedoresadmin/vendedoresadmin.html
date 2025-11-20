@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendedores Activos - Admin</title>
+
+  <!-- FUENTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="vendedoresadmin.css">
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ADMIN ================= -->
+  <header class="navbar">
+    <a href="../homeadmin/homeadmin.html" class="logo">CREW</a>
+
+    <div class="nav-right">
+      <div class="perfil-area">
+        <img id="imgPerfilAdmin" class="perfil-img" src="../homeadmin/img/iconoperfilnuevo.png" alt="Admin">
+
+        <div id="perfilMenu" class="perfil-dropdown">
+          <a href="../vendedoresadmin/vendedoresadmin.html">Vendedores</a>
+          <a href="../productosadmin/productosadmin.html">Productos</a>
+          <a href="../perfiladmin/perfiladmin.html">Mi perfil</a>
+          <a id="logoutBtn" class="logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= CONTENIDO ================= -->
+  <main class="main-wrapper">
+
+    <h1 class="titulo">VENDEDORES ACTIVOS</h1>
+
+    <!-- BOTÓN SOLICITUDES -->
+    <div class="solicitudes-wrapper">
+      <button id="btnSolicitudes" class="btn-solicitudes">Solicitudes</button>
+    </div>
+
+    <!-- LISTA DE VENDEDORES -->
+    <section class="vendors-container" id="vendorsContainer">
+      <!-- Se llena por JS -->
+    </section>
+  </main>
+
+  <!-- MODAL SUSPENDER -->
+  <div id="modalSuspender" class="modal">
+    <div class="modal-content">
+      <h2>Suspender vendedor</h2>
+      <p>¿Seguro que deseas suspender este vendedor?</p>
+      <div class="modal-buttons">
+        <button id="btnCancelarSusp" class="btn-cancelar">Cancelar</button>
+        <button id="btnConfirmarSusp" class="btn-confirmar">Suspender</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <!-- JS -->
+  <script src="scriptvendedoresadmin.js"></script>
+</body>
+</html>

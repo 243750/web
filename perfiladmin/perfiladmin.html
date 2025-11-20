@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil Admin - Crew</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="perfiladmin.css" />
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ADMIN ================= -->
+  <header class="navbar">
+    <a href="../homeadmin/homeadmin.html" class="logo">CREW</a>
+
+    <div class="nav-right">
+      <div class="perfil-area">
+        <img id="imgPerfilAdmin" class="perfil-img" src="../homeadmin/img/iconoperfilnuevo.png" alt="Admin">
+
+        <div id="perfilMenu" class="perfil-dropdown">
+          <a href="../vendedoresadmin/vendedoresadmin.html">Vendedores</a>
+          <a href="../productosadmin/productosadmin.html">Productos</a>
+          <a href="../perfiladmin/perfiladmin.html">Mi Perfil</a>
+          <a id="logoutBtn" class="logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= CONTENIDO PRINCIPAL ================= -->
+  <main class="perfil-container">
+
+    <div class="logo-box">
+      <img src="img/crewlogo.png" alt="Crew logo" class="logo-img">
+    </div>
+
+    <h1 class="titulo">WEB OFICIAL CREW</h1>
+    <p class="descripcion">"La identidad lo es todo"</p>
+
+  </main>
+
+  <!-- JS NAVBAR (dropdowns y logout) -->
+  <script>
+    document.querySelector(".perfil-area").addEventListener("click", function(e) {
+      e.stopPropagation();
+      this.classList.toggle("show");
+    });
+
+    window.addEventListener("click", () => {
+      document.querySelector(".perfil-area").classList.remove("show");
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "../login/login.html";
+    });
+  </script>
+
+</body>
+</html>

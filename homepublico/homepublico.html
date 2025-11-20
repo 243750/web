@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home Público - Crew</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="homepublico.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR PÚBLICO -->
+  <header class="navbar">
+    <a href="homepublico.html" class="logo">CREW</a>
+
+    <div class="category-area">
+      <button class="category-btn" id="categoryBtn">
+        <img src="img/iconocategoria.png" class="icon-category">
+        Categoría
+      </button>
+      <div id="categoryMenu" class="category-dropdown"></div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Buscar productos..." disabled>
+      <button class="search-btn" disabled>Buscar</button>
+    </div>
+
+    <div class="nav-icons">
+      <a href="../login/login.html"><img src="img/iconofavorito.png" class="icon"></a>
+      <a href="../login/login.html"><img src="img/iconocarrito.png" class="icon"></a>
+      <a href="../login/login.html" class="nav-text">Entrar</a>
+    </div>
+  </header>
+
+  <!-- BANNERS -->
+  <section class="banner-container">
+
+    <!-- Únete -->
+    <div class="banner-left">
+      <div class="banner-text">
+        <h2>Únete a Crew</h2>
+        <p>Crea tu tienda y llega a miles de estudiantes.</p>
+        <button class="join-btn" id="joinBtn">ÚNETE</button>
+      </div>
+      <img src="img/modelounete.png" class="banner-img">
+    </div>
+
+    <!-- Descubre -->
+    <div class="banner-right" id="discoverBtn" tabindex="0">
+      <img src="img/modelosdescubre.png" class="banner-full">
+      <div class="banner-overlay">Descubre lo nuevo</div>
+    </div>
+
+  </section>
+
+  <!-- VENDEDORES -->
+  <section class="vendors-section">
+    <h3>Explorar por vendedores</h3>
+    <div class="vendors-container" id="vendorsContainer"></div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <main>
+    <h1 class="titulo">Productos Destacados</h1>
+    <section class="productos-container" id="productosContainer"></section>
+  </main>
+
+  <script src="scripthomepublico.js" defer></script>
+</body>
+</html>

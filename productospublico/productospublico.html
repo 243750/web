@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Crew</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="productospublico.css">
+</head>
+
+<body>
+  <!-- ===================== NAVBAR PÚBLICO ===================== -->
+  <header class="navbar">
+    <a href="../homepublico/homepublico.html" class="logo">CREW</a>
+
+    <div class="category-area">
+      <button class="category-btn" id="categoryBtn">
+        <img src="img/iconocategoria.png" alt="Categoría" class="icon-category">
+        Categoría
+      </button>
+      <div id="categoryMenu" class="category-dropdown"></div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="busqueda" placeholder="Buscar productos...">
+      <button class="search-btn" id="btnBuscar">Buscar</button>
+    </div>
+
+    <div class="nav-icons">
+      <a href="../login/login.html"><img src="img/iconofavorito.png" alt="Favoritos" class="icon"></a>
+      <a href="../login/login.html"><img src="img/iconocarrito.png" alt="Carrito" class="icon"></a>
+      <a href="../login/login.html" class="nav-text">Entrar</a>
+    </div>
+  </header>
+
+  <!-- ===================== TÍTULO ===================== -->
+  <h1 class="titulo">PRODUCTOS</h1>
+
+  <!-- ===================== FILTROS ===================== -->
+  <div class="filtros">
+    <!-- MATERIAL -->
+    <select id="filtroMaterial" class="filtro-select">
+      <option value="">Materiales</option>
+      <option value="1">Algodón</option>
+      <option value="2">Poliéster</option>
+    </select>
+
+    <!-- INSTITUCIÓN -->
+    <select id="filtroInstitucion" class="filtro-select">
+      <option value="">Institución</option>
+      <option value="1">UNACH</option>
+      <option value="2">UNICACH</option>
+      <option value="3">UP</option>
+      <option value="4">TEC</option>
+    </select>
+
+    <!-- CATEGORÍA -->
+    <select id="filtroCategoria" class="filtro-select">
+      <option value="">Categoría</option>
+      <option value="1">Casual</option>
+      <option value="2">Deportivo</option>
+      <option value="3">Formal</option>
+    </select>
+  </div>
+
+  <!-- ===================== GRID DE PRODUCTOS ===================== -->
+  <section class="productos-container" id="productosContainer"></section>
+
+  <!-- JS -->
+  <script src="scriptproductospublico.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+/* ================== RESET ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Actor', sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: 'Permanent Marker';
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: #55128f;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.perfil-area {
+  position: relative;
+  cursor: pointer;
+}
+
+.perfil-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #6B1FAD50;
+}
+
+/* Dropdown */
+.perfil-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  min-width: 210px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  overflow: hidden;
+}
+
+.perfil-dropdown a {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Philosopher';
+  font-size: 0.95rem;
+}
+
+.perfil-dropdown a:hover {
+  background: #f3e7ff;
+  color: #6B1FAD;
+}
+
+.logout {
+  color: #E14B4B !important;
+}
+
+/* Mostrar dropdown */
+.perfil-area.show #perfilMenu {
+  display: block;
+}
+
+/* ================= CONTENIDO PRODUCTO ================= */
+.producto-container {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 40px;
+  padding: 40px 70px;
+}
+
+/* Caja de imagen */
+.producto-imagen-box {
+  background: #faf6ff;
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 30px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.producto-imagen-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.14);
+}
+
+.producto-img {
+  width: 100%;
+  max-width: 480px;
+  height: 460px;
+  object-fit: contain;
+}
+
+/* Info producto */
+.producto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.vendedor-titulo {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.1rem;
+  color: #6B1FAD;
+  margin-bottom: 10px;
+}
+
+.precio {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.producto-nombre {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+/* Info grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+  margin-top: 10px;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.value {
+  font-size: 0.98rem;
+  margin-top: 2px;
+}
+
+.value-estado {
+  font-weight: 600;
+  color: #27ae60;
+}
+
+/* Descripción */
+.descripcion-section {
+  margin-top: 20px;
+}
+
+.descripcion-text {
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* Vendedor extra */
+.vendedor-section {
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .producto-container {
+    grid-template-columns: 1fr;
+    padding: 25px 20px;
+  }
+
+  .producto-imagen-box {
+    order: -1;
+  }
+}

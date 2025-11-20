@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mis Productos - Crew</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styleproductos.css" />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="logo">CREW</div>
+
+      <!-- Área de categoría (botón sin recuadro + menú posicionado) -->
+      <div class="category-area">
+        <button class="category-btn" id="categoryBtn">
+          <img src="img/iconocategoria.png" alt="Categoría" class="icon-category">
+          Categoría
+        </button>
+        <div id="categoryMenu" class="category-dropdown"></div>
+      </div>
+
+      <div class="search-container">
+        <input type="text" placeholder="Buscar productos..." />
+        <button class="search-btn">Buscar</button>
+      </div>
+
+      <div class="nav-icons">
+        <div class="dropdown">
+          <img src="img/icononotificacion.png" alt="Notificaciones" class="icon" id="notif-btn">
+          <div class="dropdown-content" id="notif-dropdown">
+            <p><strong>🔔 Notificaciones</strong></p>
+            <a href="#">Nueva orden recibida</a>
+            <a href="#">Estado de pedido actualizado</a>
+            <a href="#">Tu producto ha sido aprobado</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <img src="img/iconoperfilnuevo.png" alt="Perfil" class="icon" id="profile-btn">
+          <div class="dropdown-content" id="profile-dropdown">
+            <a href="#">Compras y pedidos</a>
+            <a href="#">Mis productos</a>
+            <a href="#">Configuración de la cuenta</a>
+            <a href="#">Salir</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h1 class="page-title">MIS PRODUCTOS</h1>
+
+      <div class="filters">
+        <select id="material">
+          <option value="">Materiales</option>
+          <option value="algodon">Algodón</option>
+          <option value="poliester">Poliéster</option>
+          <option value="jersey">Jersey</option>
+        </select>
+
+        <select id="institucion">
+          <option value="">Institución</option>
+          <option value="up">UP</option>
+          <option value="tec">TEC</option>
+          <option value="unach">UNACH</option>
+          <option value="unicach">UNICACH</option>
+        </select>
+
+        <select id="categoria">
+          <option value="">Categoría</option>
+          <option value="deportivo">Deportivo</option>
+          <option value="casual">Casual</option>
+          <option value="formal">Formal</option>
+        </select>
+      </div>
+
+      <div class="content-row">
+        <div class="add-product-card">
+          <button id="addProductBtn">+</button>
+          <p>Agregar producto</p>
+        </div>
+
+        <p id="noProducts" class="no-products">Aún no has agregado productos.</p>
+      </div>
+    </main>
+
+    <script src="scriptproductos.js"></script>
+  </body>
+</html>

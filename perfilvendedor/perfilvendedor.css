@@ -1,0 +1,276 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fafafa;
+  font-family: "Actor", sans-serif;
+  color: #333;
+}
+
+/* =========================
+   NAVBAR VENDEDOR (MISMO ESTILO)
+========================= */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo:hover {
+  color: #5827c0;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Perfil dropdown */
+.perfil-area {
+  position: relative;
+  cursor: pointer;
+}
+
+.perfil-img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #6B1FAD;
+}
+
+.perfil-dropdown {
+  position: absolute;
+  top: 58px;
+  right: 0;
+  background-color: white;
+  min-width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 999;
+}
+
+.perfil-area.show .perfil-dropdown {
+  display: flex;
+}
+
+.perfil-dropdown a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  font-family: "Philosopher", sans-serif;
+  font-size: 0.95rem;
+}
+
+.perfil-dropdown a:hover {
+  background-color: #f5f5f5;
+}
+
+.logout {
+  color: #C62828 !important;
+  font-weight: bold;
+}
+
+/* =========================
+   CONTENIDO PERFIL
+========================= */
+.perfil-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.titulo {
+  text-align: center;
+  font-family: "Permanent Marker";
+  font-size: 42px;
+  color: #5a0cb4;
+  margin-bottom: 30px;
+}
+
+.perfil-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* FOTO / LOGO */
+.foto-box {
+  text-align: center;
+}
+
+.foto-perfil {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #c2c2c2;
+}
+
+.btn-subir {
+  margin-top: 12px;
+  background: #5b0bb5;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Philosopher";
+}
+
+/* FORM */
+.form-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-box label {
+  font-family: "Philosopher";
+  font-size: 16px;
+}
+
+.input-text {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+.btn-guardar {
+  margin-top: 10px;
+  padding: 12px;
+  background: #5b0bb5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: "Philosopher";
+  font-size: 16px;
+}
+
+.btn-guardar:hover {
+  background: #4a0997;
+}
+
+/* RESPONSIVE */
+@media (max-width: 750px) {
+  .perfil-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* =========================
+   ALERTA PROFESIONAL CREW
+========================= */
+.alerta-crew {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.alerta-crew.mostrar {
+  display: flex;
+}
+
+.alerta-box {
+  background: #fff;
+  padding: 24px 32px;
+  max-width: 360px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+  font-family: "Philosopher", sans-serif;
+}
+
+.alerta-box h2 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: #5b0bb5;
+}
+
+.alerta-box p {
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.alerta-btn {
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #6B1FAD;
+  color: #fff;
+  font-family: "Philosopher";
+  font-size: 14px;
+}
+
+.alerta-btn:hover {
+  background: #5827c0;
+}
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #5b0bb5;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-family: "Philosopher";
+  font-size: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.3s ease;
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.error {
+  background: #b01414;
+}
+
+.toast.success {
+  background: #21a347;
+}

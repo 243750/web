@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Actor', sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: 'Permanent Marker';
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.perfil-area {
+  position: relative;
+  cursor: pointer;
+}
+
+.perfil-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #6B1FAD50;
+}
+
+/* Dropdown */
+.perfil-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  min-width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  overflow: hidden;
+}
+
+.perfil-dropdown a {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Philosopher';
+}
+
+.perfil-dropdown a:hover {
+  background: #f3e7ff;
+  color: #6B1FAD;
+}
+
+.logout {
+  color: #E14B4B !important;
+}
+
+.perfil-area.show #perfilMenu {
+  display: block;
+}
+
+/* ================= TÍTULO ================= */
+.titulo-section {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.titulo-section h1 {
+  font-family: "Permanent Marker";
+  font-size: 2rem;
+  color: #6B1FAD;
+}
+
+/* ================= CARDS ================= */
+.vendors-section {
+  margin-top: 45px;
+  text-align: center;
+}
+
+.vendors-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 45px;
+  padding: 10px 40px 40px;
+}
+
+.vendor-card {
+  width: 190px;
+  background: #fff;
+  padding: 16px 14px 18px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.vendor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.14);
+}
+
+.vendor-circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-color: #f5f5f5;
+  border: 3px solid #6B1FAD40;
+  margin: 0 auto 10px;
+}
+
+.vendor-name {
+  font-family: 'Philosopher';
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+/* ===== BOTONES ===== */
+.actions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+}
+
+.action-btn {
+  padding: 7px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: "Philosopher";
+  transition: .25s ease;
+  font-size: .85rem;
+}
+
+.btn-aceptar {
+  background: #6B1FAD;
+  color: white;
+  box-shadow: 0 4px 10px rgba(107,31,173,0.35);
+}
+
+.btn-aceptar:hover {
+  background: #55128f;
+  transform: translateY(-1px);
+}
+
+.btn-rechazar {
+  background: #e74c3c;
+  color: white;
+  box-shadow: 0 4px 10px rgba(231,76,60,0.35);
+}
+
+.btn-rechazar:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* ================= MODAL CONFIRMACIÓN ================= */
+
+.modal-confirm {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+.modal-content-confirm {
+  background: #fff;
+  padding: 25px 35px;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 18px;
+  text-align: center;
+  font-family: 'Philosopher', sans-serif;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+  animation: popup .25s ease;
+}
+
+.modal-content-confirm h2 {
+  font-size: 1.2rem;
+  color: #6B1FAD;
+  margin-bottom: 20px;
+}
+
+@keyframes popup {
+  from { transform: scale(.85); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-confirmar,
+.btn-cancelar {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Philosopher';
+  color: #fff;
+}
+
+.btn-confirmar {
+  background: #6B1FAD;
+}
+
+.btn-confirmar:hover {
+  background: #55128f;
+}
+
+.btn-cancelar {
+  background: #d63031;
+}
+
+.btn-cancelar:hover {
+  background: #b72222;
+}

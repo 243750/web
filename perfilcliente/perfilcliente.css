@@ -1,0 +1,612 @@
+/* ==============================
+   RESETEO GENERAL
+================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Actor', sans-serif;
+  background: #ffffff;
+  color: #333;
+}
+
+
+/* ==============================
+   NAVBAR (MISMO DISEÑO GLOBAL)
+================================= */
+
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: 'Permanent Marker';
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+}
+
+/* Categoría */
+.category-area { position: relative; }
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Philosopher';
+  font-size: .95rem;
+}
+
+.icon-category {
+  width: 20px;
+  height: 20px;
+}
+
+.category-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.category-dropdown.show {
+  display: block;
+}
+
+.category-dropdown a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Philosopher';
+}
+
+.category-dropdown a:hover {
+  background: #f7f7f7;
+}
+
+/* Search */
+.search-container {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  max-width: 900px;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-family: 'Actor';
+}
+
+.search-btn {
+  padding: 8px 20px;
+  background: #6B1FAD;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-family: 'Philosopher';
+}
+
+/* ICONOS */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  width: 25px;
+  cursor: pointer;
+}
+
+/* Cuenta user */
+.cuenta-area {
+  position: relative;
+}
+
+.cuenta-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.cuenta-btn img {
+  width: 26px;
+}
+
+.cuenta-dropdown {
+  display: none;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  width: 160px;
+  z-index: 1000;
+}
+
+.cuenta-dropdown.show {
+  display: block;
+}
+
+.cuenta-dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Philosopher';
+}
+
+.logout {
+  color: #E14B4B;
+}
+
+
+/* ==============================
+   SECCIÓN SUPERIOR (MORADA)
+================================= */
+
+.perfil-header {
+  width: 100%;
+  background: #6B1FAD;
+  padding: 50px 0 70px;
+  text-align: center;
+  color: white;
+}
+
+.titulo {
+  font-family: "Permanent Marker";
+  font-size: 2.4rem;
+  margin-bottom: 25px;
+}
+
+.foto-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  margin: 0 auto;
+}
+
+#usernameTop {
+  font-family: "Philosopher";
+  margin-top: 15px;
+  font-size: 1.4rem;
+}
+
+#emailTop {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+
+/* ==============================
+   FORMULARIO DE PERFIL
+================================= */
+
+.perfil-container {
+  width: 100%;
+  max-width: 450px;
+  margin: -30px auto 0; /* Para subirlo un poco del header morado */
+  background: #fff;
+  padding: 35px 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  text-align: center;
+}
+
+.perfil-form {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+}
+
+.perfil-form label {
+  font-family: "Philosopher";
+  font-size: 1rem;
+  color: #6B1FAD;
+}
+
+.perfil-form input {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Actor";
+}
+
+#btnGuardar {
+  margin-top: 10px;
+  padding: 12px 18px;
+  background: #6B1FAD;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: "Philosopher";
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#btnGuardar:hover {
+  background: #57258f;
+}
+
+
+/* ==============================
+   TOAST
+================================= */
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #6B1FAD;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.35s ease;
+  font-family: 'Philosopher';
+  z-index: 999999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ==============================
+   SECCIÓN SUPERIOR (MORADA)
+================================= */
+
+.perfil-header {
+  width: 100%;
+  background: #6B1FAD;
+  padding: 50px 0 70px;
+  text-align: center;
+  color: white;
+}
+
+.titulo {
+  font-family: "Permanent Marker";
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+}
+
+.foto-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: url("img/iconoperfilnuevo.png") center/55% no-repeat, #d9d9d9;
+  border: 3px solid rgba(255,255,255,0.7);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+/* ==============================
+   TARJETA DE PERFIL
+================================= */
+
+.perfil-container {
+  margin: -40px auto 0;
+  padding: 40px 35px;
+  max-width: 500px;
+  width: 90%;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.perfil-container h2 {
+  font-family: "Philosopher";
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  color: #6B1FAD;
+}
+
+/* ==============================
+   FORMULARIO
+================================= */
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.perfil-form label {
+  font-family: "Philosopher";
+  font-size: 1.1rem;
+  color: #6B1FAD;
+}
+
+.perfil-form input {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: "Actor";
+  background: #fafafa;
+}
+
+.perfil-form input:focus {
+  border: 1px solid #6B1FAD;
+  outline: none;
+}
+
+/* ==============================
+   BOTÓN GUARDAR
+================================= */
+
+#btnGuardar {
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  background: #6B1FAD;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: "Philosopher";
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#btnGuardar:hover {
+  background: #541684;
+}
+
+/* ==============================
+   TOAST
+================================= */
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #6B1FAD;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.35s ease;
+  font-family: 'Philosopher';
+  z-index: 999999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ==============================
+   SECCIÓN SUPERIOR (MORADA)
+================================= */
+
+.perfil-header {
+  width: 100%;
+  background: #6B1FAD;
+  padding: 50px 0 65px;
+  text-align: center;
+  color: white;
+}
+
+.titulo {
+  font-family: "Permanent Marker";
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+
+/* FOTO DE PERFIL */
+.foto-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: url("img/iconoperfilnuevo.png") center/60% no-repeat, #d9d9d9;
+  border: 3px solid rgba(255,255,255,0.7);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+
+/* NOMBRE + CORREO (Preview usuario) */
+.perfil-preview {
+  margin-top: 15px;
+  text-align: center;
+  color: white;
+}
+
+.perfil-preview .username {
+  font-family: "Philosopher";
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.perfil-preview .email {
+  font-family: "Actor";
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+
+/* ==============================
+   TARJETA DE PERFIL
+================================= */
+
+.perfil-container {
+  margin: -45px auto 0;
+  padding: 40px 35px;
+  max-width: 500px;
+  width: 90%;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.perfil-container h2 {
+  font-family: "Philosopher";
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  color: #6B1FAD;
+}
+
+/* ==============================
+   FORMULARIO
+================================= */
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.perfil-form label {
+  font-family: "Philosopher";
+  font-size: 1.1rem;
+  color: #6B1FAD;
+}
+
+.perfil-form input {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: "Actor";
+  background: #fafafa;
+}
+
+.perfil-form input:focus {
+  border: 1px solid #6B1FAD;
+  outline: none;
+}
+
+
+/* ==============================
+   BOTÓN
+================================= */
+
+#btnGuardar {
+  width: 100%;
+  padding: 14px;
+  margin-top: 5px;
+  background: #6B1FAD;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: "Philosopher";
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#btnGuardar:hover {
+  background: #541684;
+}
+
+/* ==============================
+   TOAST
+================================= */
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #6B1FAD;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.35s ease;
+  font-family: 'Philosopher';
+  z-index: 999999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ==============================
+   RESPONSIVE
+================================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .perfil-container {
+    padding: 30px 25px;
+  }
+  .titulo {
+    font-size: 2rem;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .perfil-header {
+    padding: 40px 0 60px;
+  }
+
+  .titulo {
+    font-size: 1.8rem;
+  }
+
+  .foto-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .perfil-preview .username {
+    font-size: 1.2rem;
+  }
+
+  .perfil-preview .email {
+    font-size: 0.9rem;
+  }
+
+  .perfil-container {
+    padding: 28px 22px;
+    margin-top: -35px;
+  }
+
+  #btnGuardar {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}

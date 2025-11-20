@@ -1,0 +1,152 @@
+/* ===== NAVBAR GLOBAL CLIENTE ===== */
+
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+}
+
+/* Categorías */
+.category-area { position: relative; }
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Philosopher', sans-serif;
+  font-size: .95rem;
+}
+
+.icon-category { width: 20px; }
+
+/* Dropdown categorías */
+.category-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  border-radius: 8px;
+}
+
+.category-dropdown.show { display: block; }
+
+.category-dropdown a {
+  display: block;
+  padding: 10px 14px;
+  font-size: .9rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.category-dropdown a:hover {
+  background: #f4f4f4;
+}
+
+/* Buscador */
+.search-container {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+
+.search-btn {
+  padding: 8px 20px;
+  border: none;
+  background: #6B1FAD;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Iconos derecha */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  width: 24px;
+  cursor: pointer;
+}
+
+/* Cuenta (perfil) */
+.cuenta-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.cuenta-area { position: relative; }
+
+.cuenta-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  min-width: 160px;
+}
+
+.cuenta-dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.cuenta-dropdown.show { display: block; }
+
+.logout { color: #d33; }
+
+/* Toast compartido */
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #6B1FAD;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: .3s ease;
+  font-family: 'Philosopher', sans-serif;
+  z-index: 999999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,0 +1,170 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Actor', sans-serif; 
+  background: #fff; 
+  color: #333; 
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: 'Permanent Marker';
+  font-size: 1.8rem;
+  color: #6B1FAD;
+  text-decoration: none;
+}
+
+.nav-right { display: flex; align-items: center; gap: 25px; }
+
+.perfil-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #6B1FAD50;
+  cursor: pointer;
+}
+
+/* Dropdown */
+.perfil-area { position: relative; cursor: pointer; }
+
+.perfil-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  min-width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  overflow: hidden;
+}
+
+.perfil-dropdown a {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Philosopher';
+}
+
+.perfil-dropdown a:hover {
+  background: #f3e7ff;
+  color: #6B1FAD;
+}
+
+.logout { color: #E14B4B !important; }
+
+.perfil-area.show #perfilMenu { display: block; }
+
+/* ================= TÍTULO ================= */
+.titulo-section {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.titulo-section h1 {
+  font-family: "Permanent Marker";
+  font-size: 2rem;
+  color: #6B1FAD;
+}
+
+/* ================= CONTENEDOR ================= */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 35px;
+  padding: 40px;
+}
+
+/* ================= CARD PRODUCTO ================= */
+.product-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+  transition: .3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+  border-color: #6B1FAD;
+}
+
+/* Imagen */
+.product-img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* Texto */
+.product-name {
+  font-family: "Philosopher";
+  font-size: 1.1rem;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.product-price {
+  font-size: 1rem;
+  color: #6B1FAD;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.product-owner {
+  font-size: .9rem;
+  margin-top: 4px;
+  color: #555;
+}
+
+/* ================= BOTONES ================= */
+.btn-group {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-aceptar, .btn-rechazar {
+  flex: 1;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Philosopher';
+  font-size: .9rem;
+  transition: .25s ease;
+}
+
+.btn-aceptar {
+  background: #6B1FAD;
+  color: white;
+}
+
+.btn-aceptar:hover {
+  background: #501089;
+}
+
+.btn-rechazar {
+  background: #d9534f;
+  color: white;
+}
+
+.btn-rechazar:hover {
+  background: #9a1f19;
+}

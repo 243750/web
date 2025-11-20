@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Producto - Crew</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet" />
+
+  <!-- CSS de esta vista -->
+  <link rel="stylesheet" href="productoindividualcliente.css" />
+</head>
+<body>
+
+  <!-- ========================= NAVBAR CLIENTE ========================= -->
+<div id="navbarCliente"></div>
+<script src="../navbarcliente/navbarcliente.js"></script>
+
+
+  <!-- ====================== CONTENIDO DEL PRODUCTO ====================== -->
+  <main class="producto-container">
+
+    <!-- IMAGEN DEL PRODUCTO -->
+    <div class="producto-imagen-box">
+      <img id="imgProducto" src="" alt="Producto" class="producto-img" />
+    </div>
+
+    <!-- INFORMACIÓN DEL PRODUCTO -->
+    <div class="producto-info">
+      <!-- Nombre del vendedor arriba grande -->
+      <h1 id="nombreVendedor" class="vendedor-titulo">Vendedor</h1>
+
+      <!-- Precio y nombre del producto -->
+      <h2 id="precio" class="precio">$0.00 MX</h2>
+      <h3 id="nombreProducto" class="producto-nombre">Nombre del producto</h3>
+
+      <!-- Detalles -->
+      <p class="label">Material:</p>
+      <p id="material" class="value">—</p>
+
+      <p class="label">Institución:</p>
+      <p id="institucion" class="value">—</p>
+
+      <p class="label">Vendedor:</p>
+      <p id="vendedor" class="value">—</p>
+
+      <!-- Opciones de talla y cantidad -->
+      <div class="opciones">
+        <div>
+          <p class="label">Talla:</p>
+          <select id="selectTalla">
+            <option value="">Selecciona una talla</option>
+          </select>
+        </div>
+
+        <div>
+          <p class="label">Cantidad:</p>
+          <select id="selectCantidad">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="entrega">(ENTREGAS DE 2 A 3 DÍAS)</p>
+
+      <!-- Botones principales -->
+      <button class="btn-comprar" id="btnComprar">COMPRAR AHORA</button>
+      <button class="btn-carrito" id="btnCarrito">AÑADIR AL CARRITO</button>
+
+      <!-- Favoritos -->
+      <div class="favorito-box" id="favoritoBox">
+        <img id="iconFavorito" src="img/iconofavorito.png" class="icon-heart" alt="Favorito" />
+        <p class="favorito-text">AGREGAR A FAVORITOS</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="scriptproductoindividualcliente.js"></script>
+  <!-- ANIMACIÓN: CHECK DE ÉXITO -->
+<div id="addToCartCheck" class="add-cart-check oculto">
+  <div class="check-circle">
+    <span class="check-mark">✔</span>
+  </div>
+  <p class="check-text">Añadido al carrito</p>
+</div>
+
+</body>
+</html>
+

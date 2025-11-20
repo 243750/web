@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos Admin - Crew</title>
+
+  <!-- FUENTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="productosadmin.css">
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ADMIN ================= -->
+  <header class="navbar">
+    <a href="../homeadmin/homeadmin.html" class="logo">CREW</a>
+
+    <div class="nav-right">
+      <div class="perfil-area">
+        <img id="imgPerfilAdmin" class="perfil-img" src="img/iconoperfilnuevo.png" alt="Admin">
+
+        <div id="perfilMenu" class="perfil-dropdown">
+          <a href="../vendedoresadmin/vendedoresadmin.html">Vendedores</a>
+          <a href="../productosadmin/productosadmin.html">Productos</a>
+          <a href="../perfiladmin/perfiladmin.html">Mi perfil</a>
+          <a id="logoutBtn" class="logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= TÍTULO ================= -->
+  <div class="header-title">
+    <h1>PRODUCTOS REGISTRADOS</h1>
+    <button id="btnSolicitudes" class="btn-solicitudes">Solicitudes</button>
+  </div>
+
+
+  <!-- ================= PRODUCTOS ================= -->
+  <section class="productos-container" id="productosContainer"></section>
+
+
+  <!-- JS -->
+  <script src="scriptproductosadmin.js"></script>
+
+</body>
+</html>

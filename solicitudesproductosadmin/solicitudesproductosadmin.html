@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitudes Productos - Admin</title>
+
+  <!-- FUENTES -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="solicitudesproductosadmin.css">
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <a href="../homeadmin/homeadmin.html" class="logo">CREW</a>
+
+    <div class="nav-right">
+      <div class="perfil-area">
+        <img id="imgPerfilAdmin" class="perfil-img" src="../homeadmin/img/iconoperfilnuevo.png" alt="Admin">
+
+        <div id="perfilMenu" class="perfil-dropdown">
+          <a href="../vendedoresadmin/vendedoresadmin.html">Vendedores</a>
+          <a href="../productosadmin/productosadmin.html">Productos</a>
+          <a href="../perfiladmin/perfiladmin.html">Mi perfil</a>
+          <a id="logoutBtn" class="logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= TITULO ================= -->
+  <section class="titulo-section">
+    <h1>SOLICITUDES DE PRODUCTOS</h1>
+  </section>
+
+
+  <!-- ================= CONTENEDOR ================= -->
+  <section class="products-section">
+    <div class="products-container" id="productsContainer"></div>
+  </section>
+
+
+  <!-- JS -->
+  <script src="scriptsolicitudesproductosadmin.js"></script>
+
+</body>
+</html>

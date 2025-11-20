@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Producto (Admin) - Crew</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="productoindividualadmin.css" />
+</head>
+<body>
+
+  <!-- ================= NAVBAR ADMIN ================= -->
+  <header class="navbar">
+    <a href="../homeadmin/homeadmin.html" class="logo">CREW</a>
+
+    <div class="nav-right">
+      <div class="perfil-area">
+        <img id="imgPerfilAdmin" class="perfil-img" src="../homeadmin/img/iconoperfilnuevo.png" alt="Admin">
+
+        <div id="perfilMenu" class="perfil-dropdown">
+          <a href="../vendedoresadmin/vendedoresadmin.html">Vendedores</a>
+          <a href="../productosadmin/productosadmin.html">Productos</a>
+          <a href="../solicitudesproductosadmin/solicitudesproductosadmin.html">Solicitudes de productos</a>
+          <a href="../perfiladmin/perfiladmin.html">Mi perfil</a>
+          <a id="logoutBtn" class="logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= CONTENIDO DEL PRODUCTO ================= -->
+  <main class="producto-container">
+
+    <!-- IMAGEN DEL PRODUCTO -->
+    <div class="producto-imagen-box">
+      <img id="imgProducto" src="" alt="Producto" class="producto-img" />
+    </div>
+
+    <!-- INFORMACIÓN DEL PRODUCTO -->
+    <div class="producto-info">
+
+      <!-- Vendedor arriba -->
+      <h1 id="nombreVendedor" class="vendedor-titulo">Vendedor</h1>
+
+      <!-- Precio y nombre -->
+      <h2 id="precio" class="precio">$0.00 MX</h2>
+      <h3 id="nombreProducto" class="producto-nombre">Nombre del producto</h3>
+
+      <!-- Info principal -->
+      <div class="info-grid">
+        <div>
+          <p class="label">Material</p>
+          <p id="material" class="value">—</p>
+        </div>
+
+        <div>
+          <p class="label">Institución</p>
+          <p id="institucion" class="value">—</p>
+        </div>
+
+        <div>
+          <p class="label">Categoría</p>
+          <p id="categoria" class="value">—</p>
+        </div>
+
+        <div>
+          <p class="label">Stock total</p>
+          <p id="stockTotal" class="value">—</p>
+        </div>
+
+        <div>
+          <p class="label">Fecha de creación</p>
+          <p id="fechaCreacion" class="value">—</p>
+        </div>
+
+        <div>
+          <p class="label">Estado</p>
+          <p id="estadoProducto" class="value value-estado">—</p>
+        </div>
+      </div>
+
+      <!-- Descripción si existiera -->
+      <section class="descripcion-section">
+        <p class="label">Descripción</p>
+        <p id="descripcion" class="value descripcion-text">
+          —
+        </p>
+      </section>
+
+      <!-- Info del vendedor -->
+      <section class="vendedor-section">
+        <p class="label">Vendedor</p>
+        <p id="vendedor" class="value">—</p>
+
+        <p class="label">Datos de contacto</p>
+        <p id="contactoVendedor" class="value">—</p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="scriptproductoindividualadmin.js"></script>
+</body>
+</html>

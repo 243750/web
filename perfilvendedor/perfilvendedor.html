@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi perfil - Vendedor</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="perfilvendedor.css" />
+</head>
+<div id="toast" class="toast"></div>
+
+<body>
+
+  <!-- =========================
+       NAVBAR VENDEDOR (MISMO ESTILO)
+  ========================== -->
+  <header class="navbar">
+    <a href="../homemisproductos/homemisproductos.html" class="logo">CREW</a>
+
+    <div class="nav-right">
+      <div class="perfil-area">
+        <img id="imgPerfilNav" class="perfil-img" src="../img/defaultuser.png" />
+
+        <div id="perfilMenu" class="perfil-dropdown">
+          <a href="../homemisproductos/homemisproductos.html">Mis productos</a>
+          <a href="../mispedidosvendedor/mispedidosvendedor.html">Compras y pedidos</a>
+          <a href="../perfilvendedor/perfilvendedor.html">Mi perfil</a>
+          <a id="logoutBtn" class="logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================
+       CONTENIDO PERFIL VENDEDOR
+  ========================== -->
+  <main class="perfil-container">
+    <h1 class="titulo">MI PERFIL</h1>
+
+    <section class="perfil-card">
+
+      <!-- FOTO / LOGO TIENDA -->
+      <div class="foto-box">
+        <img id="logoTienda" src="../img/defaultuser.png" alt="Logo de tienda" class="foto-perfil" />
+        <label class="btn-subir">
+          Cambiar logo
+          <input type="file" id="inputLogo" accept="image/*" hidden />
+        </label>
+      </div>
+
+      <!-- FORM DATOS TIENDA -->
+      <div class="form-box">
+        <label for="nombreTienda">Nombre de la tienda</label>
+        <input id="nombreTienda" class="input-text" type="text" />
+
+        <label for="descripcionTienda">Descripción</label>
+        <textarea id="descripcionTienda" class="input-text textarea"></textarea>
+
+        <button id="btnGuardar" class="btn-guardar">Guardar cambios</button>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- =========================
+       ALERTA PROFESIONAL CREW
+  ========================== -->
+  <div id="alertaCrew" class="alerta-crew">
+    <div class="alerta-box">
+      <h2 id="alertaTitulo">Título</h2>
+      <p id="alertaMensaje">Mensaje aquí</p>
+      <button class="alerta-btn" id="alertaBtn">Aceptar</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script src="scriptperfilvendedor.js"></script>
+
+</body>
+</html>

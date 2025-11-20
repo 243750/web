@@ -1,0 +1,192 @@
+/* ===== Base ===== */
+:root{
+  --crew-morado:#6B1FAD;
+  --crew-morado-dark:#5a1690;
+  --crew-cafe:#AB8C7A;
+  --text:#000;
+  --border:#000;
+}
+
+*{box-sizing:border-box}
+body{
+  font-family:"Actor",sans-serif;
+  margin:0;
+  color:var(--text);
+  background:#fff;
+}
+
+/* ===== Navbar ===== */
+.navbar{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  padding:14px 32px;
+  border-bottom:1px solid #ddd;
+  background:#fff;
+}
+.logo{
+  font-family:"Permanent Marker",cursive;
+  font-size:28px;
+  color:var(--crew-morado);
+}
+
+/* Botón Categoría (sin recuadro) + envoltura para posicionar menú */
+.category-area{ position:relative; }
+.category-btn{
+  background:none;
+  border:none;
+  padding:8px 0;
+  font:16px "Philosopher",sans-serif;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+}
+.category-btn:hover{ color:var(--crew-morado); }
+.icon-category{ width:18px; height:18px; }
+
+/* Menú dropdown de Categoría */
+.category-dropdown{
+  display:none;
+  position:absolute;
+  top:36px;          /* justo debajo del botón */
+  left:0;
+  background:#fff;
+  border:1px solid #e5e5e5;
+  border-radius:8px;
+  min-width:220px;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+  overflow:hidden;
+  z-index:50;
+}
+.category-dropdown.show{ display:block; }
+.category-dropdown a{
+  display:block;
+  padding:10px 12px;
+  text-decoration:none;
+  color:#333;
+  font:15px "Philosopher",sans-serif;
+  border-bottom:1px solid #f2f2f2;
+}
+.category-dropdown a:last-child{ border-bottom:none; }
+.category-dropdown a:hover{
+  background:#f7f2fb;
+  color:var(--crew-morado);
+}
+
+/* Búsqueda */
+.search-container{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-left:center;   /* empuja a la derecha */
+}
+.search-container input{
+  width:1000px;                /* barra más larga */
+  padding:10px 16px;
+  border:1px solid #ccc;
+  border-radius:15px;
+  outline:none;
+}
+.search-btn{
+  background:var(--crew-morado);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:8px 14px;
+  cursor:pointer;
+}
+.search-btn:hover{ background:var(--crew-morado-dark); }
+
+/* Iconos perfil/notifs */
+.nav-icons{ display:flex; align-items:auto; gap:14px; }
+.icon{ width:24px; height:24px; cursor:pointer; }
+.dropdown{ position:relative; }
+.dropdown-content{
+  display:none;
+  position:absolute;
+  right:0; top:32px;
+  background:#fff;
+  border:1px solid #e9e9e9;
+  border-radius:8px;
+  min-width:220px;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+  padding:10px;
+  z-index:40;
+}
+.dropdown-content a{
+  display:block;
+  padding:8px 10px;
+  text-decoration:none;
+  color:#111;
+  border-radius:6px;
+  font-size:14px;
+}
+.dropdown-content a:hover{
+  background:#f7f2fb;
+  color:var(--crew-morado);
+}
+.show{ display:block; }
+
+/* ===== Título ===== */
+.page-title{
+  text-align:center;
+  font-family:"Permanent Marker",cursive;
+  color:var(--crew-cafe);
+  font-size:36px;
+  margin:26px 0 16px;
+}
+
+/* ===== Filtros ===== */
+.filters{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:20px;
+}
+.filters select{
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background:#fff;
+  font:16px "Philosopher",sans-serif;
+}
+
+/* ===== Contenido ===== */
+.content-row{
+  display:flex;
+  align-items:flex-start;
+  gap:24px;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* Tarjeta “Agregar producto” alineada a la izquierda */
+.add-product-card{
+  width:180px;
+  height:210px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  flex-shrink:0;
+}
+.add-product-card button{
+  background:none;
+  border:none;
+  font-size:50px;
+  line-height:1;
+  cursor:pointer;
+}
+.add-product-card p{ margin:8px 0 0; }
+
+/* Texto “Aún no has agregado productos.” centrado */
+.no-products{
+  margin:70px auto 0;
+  font-family:"Philosopher",sans-serif;
+  font-size:16px;
+  color:var(--crew-morado);
+}

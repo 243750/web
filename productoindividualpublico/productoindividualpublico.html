@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Producto - Crew</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="productoindividualpublico.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR PÚBLICO -->
+  <header class="navbar">
+    <a href="../homepublico/homepublico.html" class="logo">CREW</a>
+
+    <div class="category-area">
+      <button class="category-btn" id="categoryBtn">
+        <img src="img/iconocategoria.png" class="icon-category">
+        Categoría
+      </button>
+      <div id="categoryMenu" class="category-dropdown"></div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Buscar productos...">
+      <button class="search-btn">Buscar</button>
+    </div>
+
+    <div class="nav-icons">
+      <a href="../login/login.html"><img src="img/iconofavorito.png" class="icon"></a>
+      <a href="../login/login.html"><img src="img/iconocarrito.png" class="icon"></a>
+      <a href="../login/login.html" class="nav-text">Entrar</a>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="producto-container">
+
+    <!-- IMAGEN -->
+    <div class="producto-imagen-box">
+      <img id="imgProducto" src="" class="producto-img">
+    </div>
+
+    <!-- INFO -->
+    <div class="producto-info">
+
+      <h1 id="nombreVendedor" class="vendedor-titulo">Vendedor</h1>
+
+      <h2 id="precio" class="precio">$0.00 MX</h2>
+      <h3 id="nombreProducto" class="producto-nombre">Producto</h3>
+
+      <p class="label">Material:</p>
+      <p id="material" class="value">—</p>
+
+      <p class="label">Institución:</p>
+      <p id="institucion" class="value">—</p>
+
+      <p class="label">Vendedor:</p>
+      <p id="vendedor" class="value">—</p>
+
+      <div class="opciones">
+        <div>
+          <p class="label">Tallas disponibles:</p>
+          <select id="selectTalla" disabled>
+            <option>Cargando...</option>
+          </select>
+        </div>
+
+        <div>
+          <p class="label">Cantidad:</p>
+          <select id="selectCantidad" disabled>
+            <option>1</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="entrega">(Disponible para entrega de 2 a 3 días)</p>
+
+      <!-- SIN BOTONES DE ACCIÓN PARA PÚBLICO -->
+      <button class="btn-disabled">Inicia sesión para comprar</button>
+    </div>
+
+  </main>
+
+  <script src="scriptproductoindividualpublico.js"></script>
+</body>
+</html>

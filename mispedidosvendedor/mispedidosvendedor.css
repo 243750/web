@@ -1,0 +1,398 @@
+/* =================== RESET =================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Actor", sans-serif;
+  background: #fafafa;
+  color: #333;
+}
+
+/* =================== NAVBAR =================== */
+.navbar {
+  background: #fff;
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: "Permanent Marker";
+  font-size: 1.8rem;
+  color: #6b1fad;
+}
+
+/* Perfil */
+.perfil-area { position: relative; cursor: pointer; }
+.perfil-img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid #6B1FAD;
+}
+.perfil-dropdown {
+  position: absolute;
+  top: 58px;
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+}
+.perfil-area.show .perfil-dropdown { display: flex; }
+
+/* =================== CONTENIDO =================== */
+.contenido {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.titulo {
+  text-align: center;
+  font-family: "Permanent Marker";
+  font-size: 42px;
+  color: #5b0bb5;
+  margin-bottom: 30px;
+}
+
+/* Tarjetas */
+.pedido-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.pedido-header {
+  font-family: "Philosopher";
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.pedido-body {
+  display: flex;
+  gap: 20px;
+}
+
+.pedido-img {
+  width: 170px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.pedido-info {
+  flex: 1;
+}
+
+/* Estado */
+.estado-titulo {
+  font-family: "Philosopher";
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+
+/* Select */
+.select-estado,
+.input-fecha {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: "Actor";
+}
+
+.guardar-btn {
+  background: #6b1fad;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin-top: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Philosopher";
+}
+.guardar-btn:hover {
+  background: #5a1796;
+}
+
+.sin-pedidos {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+.oculto { display: none; }
+
+/* ===== MODAL ALERTA PROFESIONAL ===== */
+.alerta-crew {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+.alerta-box {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 14px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  animation: pop .25s ease;
+  font-family: 'Philosopher';
+}
+
+.alerta-box h2 {
+  font-size: 22px;
+  color: #6B1FAD;
+  margin-bottom: 10px;
+}
+
+.alerta-box p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.alerta-btn {
+  background: #6B1FAD;
+  color: white;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Philosopher';
+  font-size: 16px;
+}
+
+@keyframes pop {
+  from { transform: scale(.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ================================
+   NAVBAR VENDEDOR — ESTÁNDAR CREW
+================================ */
+.navbar{
+  background:#fff;
+  padding:10px 30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 5px rgba(0,0,0,.1);
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+.logo{
+  font-family:'Permanent Marker';
+  font-size:1.8rem;
+  color:#6B1FAD;
+  text-decoration:none;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+
+.perfil-area{
+  position:relative;
+  cursor:pointer;
+}
+
+.perfil-img{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #6B1FAD50;
+}
+
+/* Dropdown */
+.perfil-dropdown{
+  display:none;
+  position:absolute;
+  top:110%;
+  right:0;
+  background:#fff;
+  min-width:180px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  overflow:hidden;
+  z-index:999;
+}
+
+.perfil-dropdown a{
+  display:block;
+  padding:12px 15px;
+  text-decoration:none;
+  color:#333;
+  font-family:'Philosopher';
+}
+
+.perfil-dropdown a:hover{
+  background:#f3e7ff;
+  color:#6B1FAD;
+}
+
+.logout{
+  color:#E14B4B !important;
+}
+
+/* Mostrar dropdown */
+.perfil-area.show #perfilMenu{
+  display:block;
+}
+
+/* ================================
+   SELECT DEL ESTADO - ESTILO CREW
+================================ */
+.pedido-card select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-family: 'Philosopher';
+  border: 2px solid #c9b0f2;
+  background: #f8f2ff;
+  color: #5b0bb5;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: .25s ease;
+  outline: none;
+}
+
+.pedido-card select:hover {
+  border-color: #8a47d4;
+  background: #efe1ff;
+}
+
+.pedido-card select:focus {
+  border-color: #6b1fad;
+  box-shadow: 0 0 0 3px #c8a6ff60;
+}
+
+
+/* ================================
+   INPUT FECHA – ESTILO CREW
+================================ */
+.pedido-card input[type="date"] {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 2px solid #c9b0f2;
+  background: #faf5ff;
+  font-family: 'Actor';
+  color: #5b0bb5;
+  outline: none;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.pedido-card input[type="date"]:hover {
+  border-color: #8a47d4;
+  background: #f0e5ff;
+}
+
+.pedido-card input[type="date"]:focus {
+  border-color: #6b1fad;
+  box-shadow: 0 0 0 3px #c8a6ff60;
+}
+
+
+/* ================================
+   BOTÓN GUARDAR CAMBIOS – ESTÉTICO
+================================ */
+.btn-guardar {
+  padding: 10px 20px;
+  background: #6b1fad;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Philosopher';
+  cursor: pointer;
+  transition: .25s;
+}
+
+.btn-guardar:hover {
+  background: #5a1796;
+  transform: translateY(-2px);
+}
+
+.btn-guardar:active {
+  transform: translateY(0);
+}
+
+/* ================== MODAL COMPROBANTE ================== */
+.modal-comprobante {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  animation: fadeIn .2s ease-in-out;
+}
+
+.modal-img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #6B1FAD;
+  font-weight: bold;
+}
+
+.oculto {
+  display: none;
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

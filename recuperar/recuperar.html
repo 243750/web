@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../login/globals.css" />
+  <link rel="stylesheet" href="recuperar.css" />
+  <title>Recuperar Contraseña - Crew</title>
+</head>
+<body>
+  <div class="recuperar">
+    <img class="image" src="../login/img/imagenfondo.png" alt="Fondo Crew" />
+
+    <!-- Panel blanco -->
+    <div class="rectangle"></div>
+
+    <!-- Contenido -->
+    <div class="group">
+      <img class="UPCREWLOGO" src="../login/img/UPCREWLOGO.png" alt="Logo Crew" />
+
+      <h1 class="text-wrapper">Recuperar Contraseña</h1>
+      <p class="desc">Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.</p>
+
+      <form id="recoverForm">
+        <label class="text-wrapper-2" for="email">Correo electrónico</label>
+        <input type="email" id="email" placeholder="Ej. usuario@crew.com" required />
+
+        <button type="submit" class="rectangle-3 text-wrapper-6">Enviar enlace</button>
+        <button type="button" id="btnVolver" class="rectangle-4 text-wrapper-5">Volver al login</button>
+      </form>
+
+      <p id="msg"></p>
+    </div>
+  </div>
+
+  <script src="recuperar.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedidos del vendedor - Crew</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="mispedidosvendedor.css" />
+</head>
+
+<body>
+
+  <!-- NAVBAR DEL VENDEDOR -->
+<header class="navbar">
+  <a href="../homemisproductos/homemisproductos.html" class="logo">CREW</a>
+
+  <div class="nav-right">
+    <div class="perfil-area">
+      <img id="imgPerfilNav" class="perfil-img" src="../img/defaultuser.png">
+
+      <div id="perfilMenu" class="perfil-dropdown">
+        <a href="../homemisproductos/homemisproductos.html">Mis productos</a>
+        <a href="../mispedidosvendedor/mispedidosvendedor.html">Compras y pedidos</a>
+        <a href="../perfilvendedor/perfilvendedor.html">Mi perfil</a>
+        <a id="logoutBtn" class="logout">Cerrar sesión</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <main class="contenido">
+    <h1 class="titulo">PEDIDOS RECIBIDOS</h1>
+
+    <section id="pedidosContainer"></section>
+
+    <p id="sinPedidos" class="sin-pedidos oculto">
+      No tienes pedidos aún.
+    </p>
+  </main>
+
+  <script src="scriptmispedidosvendedor.js"></script>
+  <!-- MODAL ALERTA PROFESIONAL -->
+<div id="alertaCrew" class="alerta-crew">
+  <div class="alerta-box">
+    <h2 id="alertaTitulo">Título</h2>
+    <p id="alertaMensaje">Mensaje aquí</p>
+    <button class="alerta-btn" id="alertaBtn">Aceptar</button>
+  </div>
+</div>
+
+<!-- MODAL PARA VER COMPROBANTE -->
+<div id="modalComprobante" class="modal-comprobante oculto">
+  <div class="modal-content">
+    <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+    <img id="imgComprobante" class="modal-img" src="" alt="Comprobante de pago" />
+  </div>
+</div>
+</body>
+
+</html>
