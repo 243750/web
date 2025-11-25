@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estadísticas - Crew</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Philosopher&family=Actor&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estadisticasadmin.css">
+
+  <!-- Librería Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="../homeadmin/homeadmin.html" class="logo">CREW</a>
+
+    <div class="nav-right">
+      <div class="perfil-area">
+        <img id="imgPerfilAdmin" class="perfil-img" src="../homeadmin/img/iconoperfilnuevo.png">
+
+        <div class="perfil-dropdown">
+          <a href="../vendedoresadmin/vendedoresadmin.html">Vendedores</a>
+          <a href="../productosadmin/productosadmin.html">Productos</a>
+          <a href="../perfiladmin/perfiladmin.html">Mi Perfil</a>
+          <a id="logoutBtn" class="logout">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="stats-container">
+
+    <h1 class="titulo">Estadísticas Generales</h1>
+    <p class="subtitulo">Información en tiempo real del sistema</p>
+
+    <section class="cards-grid">
+
+      <div class="card">
+        <h2 class="card-title">Productos más vendidos</h2>
+        <canvas id="productosVendidosChart" height="260"></canvas>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Usuarios registrados</h2>
+        <canvas id="usuariosChart" height="260"></canvas>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Ventas por mes</h2>
+        <canvas id="ventasPorDiaChart" height="260"></canvas>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="scriptestadisticasadmin.js"></script>
+
+  <script>
+    // ==== DROPDOWN ADMIN ====
+    const perfilArea = document.querySelector(".perfil-area");
+
+    perfilArea.addEventListener("click", function (e) {
+      e.stopPropagation();
+      perfilArea.classList.toggle("show");
+    });
+
+    window.addEventListener("click", () => {
+      perfilArea.classList.remove("show");
+    });
+
+    // LOGOUT
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "../login/login.html";
+    });
+  </script>
+
+</body>
+</html>

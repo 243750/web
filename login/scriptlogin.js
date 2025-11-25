@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Guardar sesión
         localStorage.setItem("userToken", data.token);
+        console.log("Token guardado:", data.token);
         localStorage.setItem("rol_usuario", rolNormalizado);
 
         msg.textContent = "Inicio de sesión exitoso.";

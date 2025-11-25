@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Actor", sans-serif;
+  background: #fafafa;
+  color: #333;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  font-family: "Permanent Marker";
+  font-size: 1.8rem;
+  color: #6B1FAD;
+}
+
+.perfil-img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.perfil-area { position: relative; }
+
+.perfil-dropdown {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 170px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+
+.perfil-area.show .perfil-dropdown {
+  display: block;
+}
+
+.perfil-dropdown a {
+  display: block;
+  padding: 12px;
+  font-family: "Philosopher";
+  color: #333;
+  text-decoration: none;
+}
+
+.perfil-dropdown a:hover {
+  background: #f0d8ff;
+}
+
+/* CONTENIDO */
+.stats-container {
+  width: 95%;
+  max-width: 1400px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.titulo {
+  font-family: "Permanent Marker";
+  font-size: 48px;
+  color: #6B1FAD;
+}
+
+.subtitulo {
+  font-family: "Philosopher";
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  min-height: 500px;
+}
+
+.card-title {
+  font-family: "Philosopher";
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #6B1FAD;
+}

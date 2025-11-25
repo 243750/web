@@ -119,3 +119,23 @@ body {
   letter-spacing: 1.5px;
   margin-bottom: 30px;
 }
+
+/* 🔥 BOTÓN DE ESTADÍSTICAS */
+.btn-estadisticas {
+  background: #6B1FAD;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Philosopher';
+  font-size: 1.1rem;
+  margin-top: 10px;
+  transition: .2s ease;
+  box-shadow: 0px 0px 10px rgba(107,31,173,0.6);
+}
+
+.btn-estadisticas:hover {
+  background: #531488;
+  transform: scale(1.04);
+}

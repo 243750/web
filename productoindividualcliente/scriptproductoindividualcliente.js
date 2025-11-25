@@ -112,17 +112,20 @@ async function cargarProducto() {
 }
 
 // =======================
-// TALLAS
+// TALLAS (CORREGIDO)
 // =======================
+let tallasGlobales = [];
+
 async function cargarTallas() {
   try {
     const res = await fetch(`${API_BASE}/productos/${idProducto}/tallas`);
     if (!res.ok) return;
 
-    const tallas = await res.json();
+    tallasGlobales = await res.json(); // ← Guardamos todo para usar el stock después
+
     selectTalla.innerHTML = '<option value="">Selecciona una talla</option>';
 
-    tallas.forEach(t => {
+    tallasGlobales.forEach(t => {
       if (t.stock_disponible > 0) {
         const opt = document.createElement("option");
         opt.value = t.id_talla;
@@ -132,6 +135,33 @@ async function cargarTallas() {
     });
   } catch (err) {
     console.error("Error cargando tallas:", err);
+  }
+}
+
+// =======================
+// ACTUALIZAR CANTIDADES SEGÚN STOCK (NUEVO)
+// =======================
+function actualizarCantidadSegunTalla() {
+  const idTalla = selectTalla.value;
+  if (!idTalla) {
+    // Si no hay talla seleccionada, solo dejar 1
+    selectCantidad.innerHTML = `<option value="1">1</option>`;
+    return;
+  }
+
+  // Buscar la talla seleccionada en tallasGlobales
+  const talla = tallasGlobales.find(t => t.id_talla == idTalla);
+  if (!talla) return;
+
+  const stock = talla.stock_disponible;
+
+  // Construir las opciones de cantidad según stock
+  selectCantidad.innerHTML = "";
+  for (let i = 1; i <= stock; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = i;
+    selectCantidad.appendChild(opt);
   }
 }
 
@@ -201,6 +231,7 @@ async function agregarAlCarrito(redir) {
 
 btnCarrito.addEventListener("click", () => agregarAlCarrito(false));
 btnComprar.addEventListener("click", () => agregarAlCarrito(true));
+selectTalla.addEventListener("change", actualizarCantidadSegunTalla);
 
 // =======================
 // INICIALIZAR
@@ -210,3 +241,29 @@ btnComprar.addEventListener("click", () => agregarAlCarrito(true));
   await cargarProducto();
   await cargarTallas();
 })();
+
+// =======================
+// DROPDOWN PERFIL NAVBAR CLIENTE
+// (usa la estructura .perfil-area + #imgPerfilNav + #perfilMenu)
+// =======================
+document.addEventListener("DOMContentLoaded", () => {
+  const perfilImg = document.getElementById("imgPerfilNav");
+  const perfilMenu = document.getElementById("perfilMenu");
+  const perfilArea = perfilImg ? perfilImg.closest(".perfil-area") : null;
+
+  if (!perfilImg || !perfilMenu || !perfilArea) {
+    console.warn("Dropdown de perfil: elementos no encontrados en esta vista.");
+    return;
+  }
+
+  // Abrir / cerrar menú al hacer click en la imagen
+  perfilImg.addEventListener("click", (e) => {
+    e.stopPropagation();
+    perfilArea.classList.toggle("show");
+  });
+
+  // Cerrar al hacer click fuera
+  document.addEventListener("click", () => {
+    perfilArea.classList.remove("show");
+  });
+});

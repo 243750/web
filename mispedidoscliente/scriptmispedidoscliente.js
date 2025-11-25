@@ -14,6 +14,20 @@ const sinPedidos = document.getElementById("sinPedidos");
 
 
 // ===============================
+// TOAST BONITO CREW
+// ===============================
+function showToast(msg, tipo = "ok") {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.className = "toast show " + tipo;
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2200);
+}
+
+
+// ===============================
 // FORMATEAR FECHA (C sin hora)
 // ===============================
 function formatearFecha(arr) {
@@ -64,23 +78,46 @@ async function cargarPedidos() {
 
 
 // ===============================
-// MAPEAR ESTADOS A ESTILO CREW
+// NORMALIZAR ESTADO (ULTRA ROBUSTO)
 // ===============================
 function estadoBonito(estado) {
+  if (!estado) return { texto: "Desconocido", clase: "estado otro" };
+
   const e = estado.toLowerCase();
 
-  if (e === "pendiente" || e === "proceso") {
-    return { texto: "En proceso", clase: "estado proceso" }; // naranja
-  }
-  if (e === "entregado") {
-    return { texto: "Entregado", clase: "estado entregado" }; // verde
-  }
-  if (e === "cancelado") {
-    return { texto: "Cancelado", clase: "estado cancelado" }; // rojo
+  if (
+    e.includes("pend") ||
+    e.includes("pago") ||
+    e.includes("proceso") ||
+    e.includes("revision") ||
+    e.includes("valid")
+  ) {
+    return { texto: "En proceso", clase: "estado proceso" };
   }
 
-  return { texto: estado, clase: "estado otro" }; // neutro
+  if (e.includes("entreg")) return { texto: "Entregado", clase: "estado entregado" };
+  if (e.includes("cancel")) return { texto: "Cancelado", clase: "estado cancelado" };
+
+  return { texto: estado, clase: "estado otro" };
 }
+
+
+// ===============================
+// ¿PUEDO SUBIR COMPROBANTE?
+// ===============================
+function puedeSubirComprobante(estadoBackend) {
+  if (!estadoBackend) return false;
+  const e = estadoBackend.toLowerCase();
+
+  return (
+    e.includes("ordenado") ||
+    e.includes("pend") ||
+    e.includes("pago") ||
+    e.includes("revision") ||
+    e.includes("valid")
+  );
+}
+
 
 
 // ===============================
@@ -97,9 +134,26 @@ function renderPedidos(lista) {
     const fecha = formatearFecha(primero.fecha_orden);
     const estadoInfo = estadoBonito(primero.estado_orden);
 
-    const mostrarBoton =
-      estadoInfo.texto.toLowerCase().includes("pendiente") ||
-      estadoInfo.texto.toLowerCase().includes("validación");
+    const mostrarBoton = puedeSubirComprobante(primero.estado_orden);
+
+    // --- NUEVO: FORMATEAR FECHA DE ENTREGA ---
+    let fechaEntregaHTML = "";
+    if (primero.fecha_entrega && (
+      estadoInfo.texto === "En proceso" || 
+      estadoInfo.texto === "Entregado"
+    )) {
+      const f = primero.fecha_entrega;
+      const fechaBonita = `${f[2]} de ${[
+        "enero","febrero","marzo","abril","mayo","junio",
+        "julio","agosto","septiembre","octubre","noviembre","diciembre"
+      ][f[1]-1]} de ${f[0]}`;
+
+      fechaEntregaHTML = `
+        <p class="entrega-estimada">
+         <strong>Entrega estimada:</strong> ${fechaBonita}
+        </p>
+      `;
+    }
 
     pedidosContainer.innerHTML += `
       <article class="pedido-card">
@@ -116,9 +170,10 @@ function renderPedidos(lista) {
               ${estadoInfo.texto}
             </h2>
 
-            <p class="vendedor">Vendedor: ${primero.nombre_vendedor}</p>
-            <p class="cantidad">${items.length} productos en esta orden</p>
+            ${fechaEntregaHTML}
 
+            <p class="vendedor">Vendedor: ${primero.nombre_vendedor || "—"}</p>
+            <p class="cantidad">${items.length} productos en esta orden</p>
             <p class="total">Total: <strong>$${primero.total_orden}.00 MX</strong></p>
 
             ${
@@ -135,6 +190,12 @@ function renderPedidos(lista) {
   });
 }
 
+
+
+
+// ===============================
+// MODAL SUBIR COMPROBANTE
+// ===============================
 let ordenActualSubida = null;
 
 function abrirModalComprobante(idOrden) {
@@ -154,7 +215,7 @@ function abrirModalComprobante(idOrden) {
         <p>Banco BBVA · Titular: CREW Oficial</p>
       </div>
 
-      <input type="file" id="filePago" class="input-file" accept="image/*, .pdf">
+      <input type="file" id="filePago" class="input-file" accept="image/*">
 
       <button class="btn-subir" onclick="enviarComprobante()">Enviar comprobante</button>
       <br><br>
@@ -170,9 +231,14 @@ function cerrarModal() {
   if (modal) modal.remove();
 }
 
+
+// ===============================
+// ENVIAR COMPROBANTE (CON TOAST)
+// ===============================
 async function enviarComprobante() {
   const file = document.getElementById("filePago").files[0];
-  if (!file) return alert("Selecciona un archivo.");
+
+  if (!file) return showToast("Selecciona una imagen.", "error");
 
   const formData = new FormData();
   formData.append("comprobante", file);
@@ -180,21 +246,20 @@ async function enviarComprobante() {
   try {
     const res = await fetch(`${API}/ordenes/${ordenActualSubida}/comprobante`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
+      headers: { Authorization: `Bearer ${token}` },
       body: formData
     });
 
     if (!res.ok) throw new Error("Error subiendo comprobante");
 
-    alert("Comprobante enviado correctamente ✔");
+    showToast("Comprobante enviado correctamente ✔", "ok");
+
     cerrarModal();
     cargarPedidos();
 
   } catch (err) {
     console.error(err);
-    alert("Hubo un error al subir el comprobante.");
+    showToast("Error al subir el comprobante", "error");
   }
 }
 

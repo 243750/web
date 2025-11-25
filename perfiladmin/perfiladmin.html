@@ -43,24 +43,15 @@
     <h1 class="titulo">WEB OFICIAL CREW</h1>
     <p class="descripcion">"La identidad lo es todo"</p>
 
+    <!-- 🔥 BOTÓN NUEVO PARA ESTADÍSTICAS -->
+    <button class="btn-estadisticas" onclick="irEstadisticas()">
+      📊 Ver estadísticas
+    </button>
+
   </main>
 
-  <!-- JS NAVBAR (dropdowns y logout) -->
-  <script>
-    document.querySelector(".perfil-area").addEventListener("click", function(e) {
-      e.stopPropagation();
-      this.classList.toggle("show");
-    });
-
-    window.addEventListener("click", () => {
-      document.querySelector(".perfil-area").classList.remove("show");
-    });
-
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.clear();
-      window.location.href = "../login/login.html";
-    });
-  </script>
+  <!-- JS NAVBAR + Mi función -->
+  <script src="perfiladmin.js"></script>
 
 </body>
 </html>

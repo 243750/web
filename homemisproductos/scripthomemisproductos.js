@@ -5,7 +5,13 @@ const API_BASE = "http://52.200.165.176:7070/api";
 const token = localStorage.getItem("userToken");
 const rol = (localStorage.getItem("rol_usuario") || "").trim().toLowerCase();
 
+// Debugging: Verificar token
+console.log("Token encontrado:", token ? "Sí" : "No");
+console.log("Longitud del token:", token ? token.length : 0);
+console.log("Primeros caracteres del token:", token ? token.substring(0, 20) + "..." : "N/A");
+
 if (!token || rol !== "empresa") {
+  console.error("Redirigiendo - Token:", !!token, "Rol:", rol);
   window.location.href = "../login/login.html";
 }
 
@@ -27,24 +33,58 @@ function showToast(mensaje, tipo = "success") {
 }
 
 // ===============================
+// FUNCIÓN AUXILIAR PARA FETCH
+// ===============================
+async function fetchConToken(url, opciones = {}) {
+  const headers = {
+    ...opciones.headers,
+    Authorization: `Bearer ${token}`,
+  };
+
+  console.log("🔵 Petición a:", url);
+  console.log("🔵 Método:", opciones.method || "GET");
+  console.log("🔵 Headers:", headers);
+
+  const res = await fetch(url, { ...opciones, headers });
+
+  console.log("🟢 Respuesta status:", res.status);
+
+  // Si es 401, token inválido o expirado
+  if (res.status === 401) {
+    console.error("❌ Token inválido o expirado. Redirigiendo al login...");
+    
+    // Intentar obtener más info del error
+    try {
+      const errorData = await res.json();
+      console.error("❌ Detalle del error:", errorData);
+    } catch (e) {
+      const errorText = await res.text();
+      console.error("❌ Respuesta del servidor:", errorText);
+    }
+    
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("rol_usuario");
+    
+    alert("Tu sesión ha expirado. Serás redirigido al login.");
+    window.location.href = "../login/login.html";
+    throw new Error("Token inválido");
+  }
+
+  return res;
+}
+
+// ===============================
 // CARGAR PERFIL DEL VENDEDOR
 // ===============================
 async function cargarPerfil() {
   try {
-    const res = await fetch(`${API_BASE}/vendedor/perfil`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await fetchConToken(`${API_BASE}/vendedor/perfil`);
 
-    if (!res.ok) {
-      console.warn("No se pudo cargar el perfil del vendedor");
-      return;
-    }
+    if (!res.ok) return;
 
     const data = await res.json();
     const img = document.getElementById("imgPerfilNav");
-    if (img) {
-      img.src = data.logo || "../img/defaultuser.png";
-    }
+    img.src = data.logo || "../img/defaultuser.png";
   } catch (err) {
     console.error("Error perfil:", err);
   }
@@ -53,61 +93,30 @@ async function cargarPerfil() {
 cargarPerfil();
 
 // ===============================
-// DROPDOWN PERFIL + LOGOUT
-// ===============================
-const perfilArea = document.querySelector(".perfil-area");
-const perfilMenu = document.getElementById("perfilMenu");
-const logoutBtn = document.getElementById("logoutBtn");
-
-if (perfilArea && perfilMenu) {
-  perfilArea.addEventListener("click", (e) => {
-    e.stopPropagation();
-    perfilArea.classList.toggle("show");
-  });
-
-  window.addEventListener("click", (e) => {
-    if (!perfilArea.contains(e.target)) {
-      perfilArea.classList.remove("show");
-    }
-  });
-}
-
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    localStorage.clear();
-    window.location.href = "../login/login.html";
-  });
-}
-
-// ===============================
 // CARGAR PRODUCTOS DEL VENDEDOR
 // ===============================
 let productosGlobales = [];
 
 async function cargarMisProductos() {
   try {
-    const res = await fetch(`${API_BASE}/vendedor/productos`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await fetchConToken(`${API_BASE}/vendedor/productos`);
 
     if (!res.ok) {
-      console.error("Error cargando productos:", res.status);
       showToast("No se pudieron cargar los productos.", "error");
       return;
     }
 
     productosGlobales = await res.json();
-  const aprobados = productosGlobales.filter(
-  p => p.estado_aprobacion && p.estado_aprobacion.toLowerCase() === "aprobado"
-);
 
-console.log("Filtrados (solo aprobados):", aprobados);
+    const aprobados = productosGlobales.filter(
+      p => p.estado_aprobacion?.toLowerCase() === "aprobado"
+    );
 
-renderProductos(aprobados);
+    renderProductos(aprobados);
 
   } catch (err) {
     console.error("Error cargando productos:", err);
-    showToast("Error de conexión al cargar productos.", "error");
+    showToast("Error de conexión.", "error");
   }
 }
 
@@ -121,7 +130,6 @@ const contenedor = document.getElementById("productosContainer");
 function renderProductos(lista) {
   if (!contenedor) return;
 
-  // Tarjeta para agregar producto
   contenedor.innerHTML = `
     <div class="producto-card agregar-card"
          onclick="window.location.href='../agregarproducto/agregarproductos.html'">
@@ -130,11 +138,10 @@ function renderProductos(lista) {
     </div>
   `;
 
-  lista.forEach((p) => {
+  lista.forEach(p => {
     contenedor.innerHTML += `
       <div class="producto-card">
-        <img src="${p.imagen}" class="producto-img" alt="${p.nombre || "Producto"}">
-
+        <img src="${p.imagen}" class="producto-img" alt="${p.nombre}">
         <p class="producto-nombre">${p.nombre}</p>
         <p class="producto-precio">$${p.precio}.00 MX</p>
 
@@ -151,172 +158,149 @@ function renderProductos(lista) {
 // MODAL ELIMINAR PRODUCTO
 // ===============================
 const modalEliminar = document.getElementById("modalEliminar");
-const btnCancelarEliminar = document.getElementById("btnCancelarEliminar");
-const btnConfirmarEliminar = document.getElementById("btnConfirmarEliminar");
-
 let productoAEliminar = null;
 
 function abrirModalEliminar(id) {
   productoAEliminar = id;
-  if (modalEliminar) {
-    modalEliminar.style.display = "flex";
-  }
+  modalEliminar.style.display = "flex";
 }
 
-if (btnCancelarEliminar && modalEliminar) {
-  btnCancelarEliminar.addEventListener("click", () => {
-    productoAEliminar = null;
-    modalEliminar.style.display = "none";
-  });
-}
+document.getElementById("btnCancelarEliminar").onclick = () => {
+  productoAEliminar = null;
+  modalEliminar.style.display = "none";
+};
 
-if (btnConfirmarEliminar && modalEliminar) {
-  btnConfirmarEliminar.addEventListener("click", async () => {
-    if (productoAEliminar === null) return;
+document.getElementById("btnConfirmarEliminar").onclick = async () => {
+  if (productoAEliminar === null) return;
 
-    try {
-      const res = await fetch(
-        `${API_BASE}/vendedor/productos/${productoAEliminar}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+  try {
+    console.log("🗑️ Eliminando producto:", productoAEliminar);
+    console.log("🗑️ Token disponible:", !!token);
 
-      if (!res.ok) {
-        console.error("Error eliminando producto:", res.status);
-        showToast("No se pudo eliminar el producto.", "error");
-        return;
+    // OPCIÓN 1: Intentar con fetchConToken (con todos los headers)
+    const res = await fetch(`${API_BASE}/vendedor/productos/${productoAEliminar}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
       }
+    });
 
-      showToast("Producto eliminado correctamente.", "success");
-      modalEliminar.style.display = "none";
-      productoAEliminar = null;
-      cargarMisProductos();
-    } catch (err) {
-      console.error("Error eliminando producto:", err);
-      showToast("Error de red al eliminar.", "error");
-    }
-  });
-}
+    console.log("🗑️ Status de eliminación:", res.status);
+    console.log("🗑️ Headers de respuesta:", [...res.headers.entries()]);
 
-// Cerrar modal eliminar con clic afuera
-if (modalEliminar) {
-  modalEliminar.addEventListener("click", (e) => {
-    if (e.target === modalEliminar) {
-      modalEliminar.style.display = "none";
-      productoAEliminar = null;
+    if (res.status === 401) {
+      const errorData = await res.json().catch(() => res.text());
+      console.error("❌ Error 401 - Detalles:", errorData);
+      showToast("Error de autenticación. Intenta cerrar sesión y volver a entrar.", "error");
+      return;
     }
-  });
-}
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("❌ Error del servidor:", errorText);
+      showToast("No se pudo eliminar el producto.", "error");
+      return;
+    }
+
+    showToast("Producto eliminado correctamente.");
+    modalEliminar.style.display = "none";
+    productoAEliminar = null;
+    cargarMisProductos();
+  } catch (err) {
+    console.error("❌ Error eliminando producto:", err);
+    showToast("Error al eliminar producto.", "error");
+  }
+};
 
 // ===============================
 // MODAL EDITAR PRODUCTO
 // ===============================
-const modalEditar = document.getElementById("modalEditar");
-const btnCancelarEditar = document.getElementById("btnCancelarEditar");
-const btnGuardarEditar = document.getElementById("btnGuardarEditar");
-
-const inputEditNombre = document.getElementById("editNombre");
-const inputEditDescripcion = document.getElementById("editDescripcion");
-const inputEditPrecio = document.getElementById("editPrecio");
-
 let productoAEditar = null;
+const modalEditar = document.getElementById("modalEditar");
 
 function abrirModalEditar(id) {
-  const prod = productosGlobales.find((p) => p.id_producto === id);
-  if (!prod) {
-    showToast("No se encontró el producto a editar.", "error");
-    return;
-  }
+  const prod = productosGlobales.find(p => p.id_producto === id);
+  if (!prod) return showToast("No se encontró el producto.", "error");
 
   productoAEditar = id;
 
-  if (inputEditNombre) inputEditNombre.value = prod.nombre || "";
-  if (inputEditDescripcion)
-    inputEditDescripcion.value = prod.descripcion || "";
-  if (inputEditPrecio) inputEditPrecio.value = prod.precio || 0;
+  document.getElementById("editNombre").value = prod.nombre;
+  document.getElementById("editDescripcion").value = prod.descripcion;
+  document.getElementById("editPrecio").value = prod.precio;
 
-  if (modalEditar) {
-    modalEditar.style.display = "flex";
-  }
+  modalEditar.style.display = "flex";
 }
 
-if (btnCancelarEditar && modalEditar) {
-  btnCancelarEditar.addEventListener("click", () => {
-    productoAEditar = null;
+document.getElementById("btnCancelarEditar").onclick = () => {
+  productoAEditar = null;
+  modalEditar.style.display = "none";
+};
+
+document.getElementById("btnGuardarEditar").onclick = async () => {
+  if (!productoAEditar) return;
+
+  const body = {
+    nombre: document.getElementById("editNombre").value,
+    descripcion: document.getElementById("editDescripcion").value,
+    precio: parseFloat(document.getElementById("editPrecio").value)
+  };
+
+  try {
+    const res = await fetchConToken(`${API_BASE}/vendedor/productos/${productoAEditar}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("Error del servidor:", errorText);
+      return showToast("Error al actualizar.", "error");
+    }
+
+    showToast("Producto actualizado correctamente.");
     modalEditar.style.display = "none";
-  });
+    cargarMisProductos();
+  } catch (err) {
+    console.error("Error actualizando producto:", err);
+    showToast("Error al actualizar producto.", "error");
+  }
+};
+
+// ===============================
+// MENÚ DESPLEGABLE DE PERFIL (CORREGIDO)
+// ===============================
+
+const perfilImg = document.getElementById("imgPerfilNav");
+const perfilMenu = document.getElementById("perfilMenu");
+const perfilArea = document.querySelector(".perfil-area");
+
+if (perfilImg && perfilMenu && perfilArea) {
+
+    // Abrir / cerrar al hacer click en la imagen
+    perfilImg.addEventListener("click", (e) => {
+        e.stopPropagation();
+        perfilArea.classList.toggle("show");
+    });
+
+    // Cerrar al hacer click fuera
+    document.addEventListener("click", () => {
+        perfilArea.classList.remove("show");
+    });
 }
 
-if (btnGuardarEditar && modalEditar) {
-  btnGuardarEditar.addEventListener("click", async () => {
-    if (productoAEditar === null) return;
 
-    const nombre = inputEditNombre ? inputEditNombre.value.trim() : "";
-    const descripcion = inputEditDescripcion
-      ? inputEditDescripcion.value.trim()
-      : "";
-    const precioValor = inputEditPrecio ? inputEditPrecio.value.trim() : "";
-
-    if (!nombre || !descripcion || !precioValor) {
-      showToast("Completa todos los campos.", "error");
-      return;
-    }
-
-    const precio = parseFloat(precioValor);
-    if (isNaN(precio) || precio <= 0) {
-      showToast("Precio inválido.", "error");
-      return;
-    }
-
-    const body = {
-      nombre,
-      descripcion,
-      precio,
-    };
-
-    try {
-      const res = await fetch(
-        `${API_BASE}/vendedor/productos/${productoAEditar}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(body),
-        }
-      );
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        console.error("Error editando producto:", res.status, data);
-        showToast(
-          data.error || "No se pudo actualizar el producto.",
-          "error"
-        );
-        return;
-      }
-
-      showToast("Producto actualizado correctamente.", "success");
-      modalEditar.style.display = "none";
-      productoAEditar = null;
-      cargarMisProductos();
-    } catch (err) {
-      console.error("Error editando producto:", err);
-      showToast("Error de red al actualizar.", "error");
-    }
-  });
-}
-
-// Cerrar modal edición con clic afuera
-if (modalEditar) {
-  modalEditar.addEventListener("click", (e) => {
-    if (e.target === modalEditar) {
-      modalEditar.style.display = "none";
-      productoAEditar = null;
-    }
-  });
+// ===============================
+// LOGOUT
+// ===============================
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.onclick = () => {
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("rol_usuario");
+    window.location.href = "../login/login.html";
+  };
 }

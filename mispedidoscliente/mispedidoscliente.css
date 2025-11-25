@@ -11,7 +11,7 @@ body {
   color: #333;
 }
 
-/* =================== NAVBAR (MISMO ESTILO DE SIEMPRE) =================== */
+/* =================== NAVBAR =================== */
 .navbar {
   background: #fff;
   padding: 10px 30px;
@@ -161,7 +161,7 @@ body {
   margin-bottom: 30px;
 }
 
-/* Tarjeta de pedido */
+/* Tarjeta */
 .pedido-card {
   background: #ffffff;
   border-radius: 12px;
@@ -190,7 +190,7 @@ body {
   object-fit: cover;
 }
 
-/* Texto */
+/* Info */
 .pedido-info {
   flex: 1;
 }
@@ -206,17 +206,15 @@ body {
 }
 
 .estado.entregado {
-  color: #0ea010;
+  color: #27ae60;
 }
 
-.entrega {
-  font-size: 14px;
-  margin-bottom: 15px;
+.estado.cancelado {
+  color: #e63946;
 }
 
-.detalle {
-  font-size: 14px;
-  margin-bottom: 4px;
+.estado.otro {
+  color: #555;
 }
 
 .total {
@@ -236,41 +234,7 @@ body {
   display: none;
 }
 
-/* =================== RESPONSIVE =================== */
-@media (max-width: 700px) {
-  .pedido-body {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .pedido-img {
-    width: 60%;
-    margin: 0 auto;
-  }
-}
-
-.estado {
-  font-family: 'Philosopher';
-  font-size: 1.3rem;
-  margin-bottom: 6px;
-}
-
-.estado.proceso {
-  color: #ff8b00; /* naranja */
-}
-
-.estado.entregado {
-  color: #27ae60; /* verde */
-}
-
-.estado.cancelado {
-  color: #e63946; /* rojo */
-}
-
-.estado.otro {
-  color: #555;
-}
-
+/* Botón de voucher */
 .btn-voucher {
   margin-top: 14px;
   background: #6b1fad;
@@ -349,4 +313,47 @@ body {
 }
 .btn-subir:hover {
   background: #4a1186;
+}
+
+/* =================== TOAST CREW =================== */
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #333;
+  padding: 14px 18px;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Philosopher';
+  font-size: 0.95rem;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: .25s ease;
+  z-index: 999999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.ok {
+  background: #2e7d32;
+}
+
+.toast.error {
+  background: #c62828;
+}
+
+/* Animación modal */
+@keyframes pop {
+  0% { transform: scale(.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.entrega-estimada {
+  margin: 6px 0 10px;
+  font-size: 15px;
+  color: #444;
+  font-family: "Actor";
 }

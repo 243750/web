@@ -10,6 +10,7 @@ if (!token || rol !== "cliente") {
 }
 
 let carritoActual = [];
+let stockPorTalla = {}; // <-- NUEVO (STOCK REAL)
 
 
 // ===============================
@@ -20,6 +21,26 @@ function toast(msg) {
   t.textContent = msg;
   t.classList.add("show");
   setTimeout(() => t.classList.remove("show"), 2000);
+}
+
+
+// ===============================
+// CARGAR STOCK REAL DE TALLAS
+// ===============================
+async function cargarStockDeTallas(idProducto) {
+  try {
+    const res = await fetch(`${API}/productos/${idProducto}/tallas`);
+    if (!res.ok) return;
+
+    const tallas = await res.json();
+
+    tallas.forEach(t => {
+      stockPorTalla[t.id_talla] = t.stock_disponible;
+    });
+
+  } catch (err) {
+    console.error("Error cargando stock:", err);
+  }
 }
 
 
@@ -45,7 +66,7 @@ async function cargarCarrito() {
     }
 
     carritoVacio.classList.add("oculto");
-    renderCarrito(lista);
+    await renderCarrito(lista);
 
   } catch (err) {
     console.error("Error:", err);
@@ -69,11 +90,18 @@ function agrupar(items) {
 
 
 // ===============================
-// RENDER PRINCIPAL
+// RENDER PRINCIPAL (CORREGIDO)
 // ===============================
-function renderCarrito(items) {
-  const grupos = agrupar(items);
+async function renderCarrito(items) {
   carritoContainer.innerHTML = "";
+
+  // Cargar stock real de todos los productos involucrados
+  const idsProductos = [...new Set(items.map(i => i.id_producto))];
+  for (const id of idsProductos) {
+    await cargarStockDeTallas(id);
+  }
+
+  const grupos = agrupar(items);
 
   Object.keys(grupos).forEach(vendedor => {
     const productos = grupos[vendedor];
@@ -114,7 +142,24 @@ function renderCarrito(items) {
 
 
 // ===============================
-// RENDER ITEM
+// GENERAR OPCIONES DE CANTIDAD POR STOCK (NUEVO)
+// ===============================
+function generarOpcionesCantidad(idTalla, cantidadActual) {
+  const stock = stockPorTalla[idTalla] || 1;
+  let opciones = "";
+
+  for (let i = 1; i <= stock; i++) {
+    opciones += `
+      <option value="${i}" ${i == cantidadActual ? "selected" : ""}>${i}</option>
+    `;
+  }
+
+  return opciones;
+}
+
+
+// ===============================
+// RENDER ITEM (CORREGIDO)
 // ===============================
 function renderItem(i) {
   return `
@@ -130,9 +175,7 @@ function renderItem(i) {
         <div class="cantidad-box">
           <label>Cantidad:</label>
           <select onchange="cambiarCantidad(${i.id_item}, this.value)">
-            ${[1,2,3,4,5].map(n => `
-              <option value="${n}" ${n == i.cantidad ? "selected" : ""}>${n}</option>
-            `).join("")}
+            ${generarOpcionesCantidad(i.id_talla, i.cantidad)}
           </select>
         </div>
       </div>
@@ -191,13 +234,18 @@ btnConfirmarModal.addEventListener("click", async () => {
 
 
 // ===============================
-// CAMBIAR CANTIDAD
+// CAMBIAR CANTIDAD (YA COINCIDE CON STOCK)
 // ===============================
 async function cambiarCantidad(idItem, nueva) {
   try {
     const item = carritoActual.find(x => x.id_item === idItem);
-
     if (!item) return toast("Error interno");
+
+    // Verificar stock
+    const stock = stockPorTalla[item.id_talla] || 1;
+    if (nueva > stock) {
+      return toast(`Solo hay ${stock} piezas disponibles`);
+    }
 
     // DELETE item viejo
     await fetch(`${API}/carrito/items/${idItem}`, {

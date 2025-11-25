@@ -57,7 +57,7 @@ function mostrarAlerta(msg, ok = true) {
 
 
 /* ============================================
-   CARGAR FOTO PERFIL VENDEDOR
+   FOTO PERFIL VENDEDOR
 ============================================ */
 async function cargarFotoPerfil() {
   try {
@@ -77,10 +77,7 @@ async function cargarFotoPerfil() {
 
 cargarFotoPerfil();
 
-
-/* ============================================
-   DROPDOWN PERFIL
-============================================ */
+/* DROPDOWN PERFIL */
 const perfilArea = document.querySelector(".perfil-area");
 
 perfilArea.addEventListener("click", () => {
@@ -93,7 +90,6 @@ window.addEventListener("click", (e) => {
   }
 });
 
-/* LOGOUT */
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "../login/login.html";
@@ -101,25 +97,25 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
 
 
 /* ============================================
-   FORMATEAR FECHA API → dd/mm/aaaa
+   FECHAS
 ============================================ */
-function formatearFecha(fechaArr) {
-  const y = fechaArr[0];
-  const m = fechaArr[1].toString().padStart(2, "0");
-  const d = fechaArr[2].toString().padStart(2, "0");
+function formatearFecha(f) {
+  const y = f[0];
+  const m = f[1].toString().padStart(2, "0");
+  const d = f[2].toString().padStart(2, "0");
   return `${d}/${m}/${y}`;
 }
 
-function fechaInputValue(fechaArr) {
-  const y = fechaArr[0];
-  const m = fechaArr[1].toString().padStart(2, "0");
-  const d = fechaArr[2].toString().padStart(2, "0");
+function fechaInputValue(f) {
+  const y = f[0];
+  const m = f[1].toString().padStart(2, "0");
+  const d = f[2].toString().padStart(2, "0");
   return `${y}-${m}-${d}`;
 }
 
 
 /* ============================================
-   CARGAR PEDIDOS DEL VENDEDOR
+   CARGAR PEDIDOS
 ============================================ */
 async function cargarPedidos() {
   try {
@@ -128,7 +124,8 @@ async function cargarPedidos() {
     });
 
     const data = await res.json();
-    console.log("PEDIDOS:", data);
+
+    console.log("DEBUG → Pedido crudo:", JSON.stringify(data, null, 2));
 
     renderPedidos(data);
 
@@ -141,7 +138,7 @@ cargarPedidos();
 
 
 /* ============================================
-   RENDER DE PEDIDOS + BOTÓN VER COMPROBANTE
+   RENDER PEDIDOS
 ============================================ */
 function renderPedidos(lista) {
   pedidosContainer.innerHTML = "";
@@ -154,14 +151,19 @@ function renderPedidos(lista) {
 
     pedidosContainer.innerHTML += `
       <article class="pedido-card">
-        <h3>Pedido #${pedido.id_orden} Fecha: ${fechaOrden}</h3>
+        
+        <h3>
+          Pedido #${pedido.id_orden} — ${fechaOrden}
+        </h3>
+
+        <p style="margin:6px 0 14px; font-family:Philosopher; color:#6B1FAD;">
+          👤 Cliente: <strong>${pedido.nombre_cliente}</strong>
+        </p>
 
         <div class="pedido-body">
           <img src="${pedido.imagen_producto}" class="pedido-img">
 
           <div class="pedido-info">
-
-
 
             <label>Estado del pedido</label>
             <select id="estado_${pedido.id_orden}" class="estado-select">
@@ -173,19 +175,19 @@ function renderPedidos(lista) {
             <label style="margin-top:10px;">Fecha estimada de entrega:</label>
             <input type="date" id="fecha_${pedido.id_orden}" value="${fechaEntrega}" />
 
-            <button class="guardar-btn"
-              onclick="guardarCambios(${pedido.id_orden})">
+            <button class="guardar-btn" onclick="guardarCambios(${pedido.id_orden})">
               Guardar cambios
             </button>
-${
-  pedido.comprobante_url
-    ? `<button class="btn-ver-comprobante"
-         onclick="verComprobante('${pedido.comprobante_url}')"
-         style="margin-top:12px; background:#6B1FAD; color:#fff; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;">
-         Ver comprobante
-       </button>`
-    : ""
-}
+
+            ${
+              pedido.comprobante_url
+                ? `<button class="btn-ver-comprobante"
+                     onclick="verComprobante('${pedido.comprobante_url}')"
+                     style="margin-top:12px; background:#6B1FAD; color:#fff; border:none; padding:8px 14px; border-radius:8px; cursor:pointer;">
+                     Ver comprobante
+                   </button>`
+                : ""
+            }
 
           </div>
         </div>
@@ -196,42 +198,16 @@ ${
 
 
 /* ============================================
-   MODAL VISUALIZAR COMPROBANTE
+   MODAL COMPROBANTE
 ============================================ */
 function verComprobante(url) {
-  if (!url) return;
+  const modal = document.getElementById("modalComprobante");
+  document.getElementById("imgComprobante").src = url;
+  modal.classList.remove("oculto");
+}
 
-  // Si es PDF → nueva pestaña
-  if (url.toLowerCase().endsWith(".pdf")) {
-    window.open(url, "_blank");
-    return;
-  }
-
-  // Modal imagen
-  const fondo = document.createElement("div");
-  fondo.style.position = "fixed";
-  fondo.style.top = 0;
-  fondo.style.left = 0;
-  fondo.style.width = "100%";
-  fondo.style.height = "100%";
-  fondo.style.background = "rgba(0,0,0,.7)";
-  fondo.style.display = "flex";
-  fondo.style.justifyContent = "center";
-  fondo.style.alignItems = "center";
-  fondo.style.zIndex = "5000";
-  fondo.style.cursor = "zoom-out";
-
-  const img = document.createElement("img");
-  img.src = url;
-  img.style.maxWidth = "80%";
-  img.style.maxHeight = "80%";
-  img.style.borderRadius = "10px";
-  img.style.boxShadow = "0 4px 20px rgba(0,0,0,.3)";
-  
-  fondo.appendChild(img);
-  document.body.appendChild(fondo);
-
-  fondo.onclick = () => fondo.remove();
+function cerrarModal() {
+  document.getElementById("modalComprobante").classList.add("oculto");
 }
 
 
@@ -243,7 +219,7 @@ async function guardarCambios(id) {
   const fecha = document.getElementById(`fecha_${id}`).value;
 
   const body = {
-    estado: estado,
+    estado,
     fecha_entrega: fecha || null
   };
 
@@ -268,19 +244,4 @@ async function guardarCambios(id) {
     console.error("Error guardando:", err);
     mostrarAlerta("Error al conectar con servidor.", false);
   }
-}
-
-/* ==============================
-   MODAL COMPROBANTE
-============================== */
-function verComprobante(url) {
-  const modal = document.getElementById("modalComprobante");
-  const img = document.getElementById("imgComprobante");
-
-  img.src = url;
-  modal.classList.remove("oculto");
-}
-
-function cerrarModal() {
-  document.getElementById("modalComprobante").classList.add("oculto");
 }
