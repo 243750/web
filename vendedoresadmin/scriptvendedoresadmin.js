@@ -13,6 +13,8 @@ const API_BASE = "http://52.200.165.176:7070/api";
 const API_EMPRESAS_APROBADAS = `${API_BASE}/admin/empresas/aprobadas`;
 const API_SUSPENDER_EMPRESA = (id) =>
   `${API_BASE}/admin/empresas/${id}/suspender`;
+const API_REACTIVAR_EMPRESA = (id) =>
+  `${API_BASE}/admin/empresas/${id}/reactivar`;
 
 // =====================
 // NAVBAR / PERFIL
@@ -41,7 +43,7 @@ if (logoutBtn) {
   });
 }
 
-// Botón solicitudes -> redirige
+// Botón solicitudes
 const btnSolicitudes = document.getElementById("btnSolicitudes");
 if (btnSolicitudes) {
   btnSolicitudes.addEventListener("click", () => {
@@ -63,7 +65,7 @@ function showToast(mensaje, tipo = "success") {
   if (toastTimeout) clearTimeout(toastTimeout);
   toastTimeout = setTimeout(() => {
     toast.classList.remove("show");
-  }, 2500);
+  }, 2400);
 }
 
 // =====================
@@ -85,7 +87,7 @@ function cerrarModalSuspender() {
   if (modalSuspender) modalSuspender.style.display = "none";
 }
 
-if (btnCancelarSusp && modalSuspender) {
+if (btnCancelarSusp) {
   btnCancelarSusp.addEventListener("click", cerrarModalSuspender);
 }
 
@@ -95,6 +97,7 @@ if (modalSuspender) {
   });
 }
 
+// SUSPENDER (con modal)
 if (btnConfirmarSusp) {
   btnConfirmarSusp.addEventListener("click", async () => {
     if (!empresaSeleccionada) return;
@@ -108,42 +111,65 @@ if (btnConfirmarSusp) {
       });
 
       if (!res.ok) {
-        console.error("Error al suspender:", res.status);
         showToast("No se pudo suspender al vendedor.", "error");
         return;
       }
 
-      showToast("Vendedor suspendido correctamente.", "success");
+      showToast("Vendedor suspendido.", "success");
       cerrarModalSuspender();
       await cargarEmpresas();
     } catch (err) {
-      console.error("Error al suspender:", err);
-      showToast("Error de red al suspender.", "error");
+      showToast("Error de red.", "error");
     }
   });
 }
 
 // =====================
-// CARGAR EMPRESAS APROBADAS
+// REACTIVAR DIRECTO
+// =====================
+async function reactivarVendedor(idEmpresa) {
+  try {
+    const res = await fetch(API_REACTIVAR_EMPRESA(idEmpresa), {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      showToast("No se pudo reactivar.", "error");
+      return;
+    }
+
+    showToast("Vendedor reactivado.", "success");
+    await cargarEmpresas();
+  } catch (err) {
+    showToast("Error de conexión.", "error");
+  }
+}
+
+// =====================
+// CARGAR EMPRESAS
 // =====================
 const vendorsContainer = document.getElementById("vendorsContainer");
 
 async function cargarEmpresas() {
+  if (!vendorsContainer) return;
+
   try {
     const res = await fetch(API_EMPRESAS_APROBADAS, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
     if (!res.ok) {
-      console.error("Error cargando empresas:", res.status);
-      vendorsContainer.innerHTML = "<p>No se pudieron cargar los vendedores.</p>";
+      vendorsContainer.innerHTML =
+        "<p>No se pudieron cargar los vendedores.</p>";
       return;
     }
 
     const empresas = await res.json();
     renderEmpresas(empresas);
   } catch (err) {
-    console.error("Error cargando empresas:", err);
     vendorsContainer.innerHTML = "<p>Error de conexión.</p>";
   }
 }
@@ -157,26 +183,57 @@ function renderEmpresas(lista) {
   }
 
   vendorsContainer.innerHTML = lista
-    .map(
-      (e) => `
+    .map((e) => {
+      const estadoCuenta = e.estado_cuenta || "sin datos";
+
+      // Botón dinámico: rojo para suspender, verde para reactivar
+      const boton =
+        estadoCuenta === "suspendido"
+          ? `
+        <button class="suspend-btn"
+                style="background:#e3ffe3;border-color:#2e7d32;"
+                data-reactivar="${e.id_empresa}"
+                title="Reactivar vendedor">
+          <span style="color:#2e7d32;">🔄</span>
+        </button>`
+          : `
+        <button class="suspend-btn"
+                data-id="${e.id_empresa}"
+                title="Suspender vendedor">
+          <span>⛔</span>
+        </button>`;
+
+      return `
       <div class="vendor-card">
         <div class="vendor-circle"
-             style="background-image: url('${e.logo || "../homecliente/img/defaultuser.png"}')"></div>
-        <button class="suspend-btn" data-id="${e.id_empresa}" title="Suspender vendedor">
-          <span>⛔</span>
-        </button>
+             style="background-image:url('${
+               e.logo || "../homecliente/img/defaultuser.png"
+             }')">
+        </div>
+
+        ${boton}
+
         <p class="vendor-name">${e.nombre_comercial || "Sin nombre"}</p>
-      </div>
-    `
-    )
+
+        <p class="vendor-status">
+          Estado: <strong>${estadoCuenta}</strong>
+        </p>
+      </div>`;
+    })
     .join("");
 
-  // Listeners de los íconos de suspender
-  document.querySelectorAll(".suspend-btn").forEach((btn) => {
-    btn.addEventListener("click", (ev) => {
-      ev.stopPropagation();
-      const id = btn.getAttribute("data-id");
-      abrirModalSuspender(id);
+  // Botones suspender
+  document.querySelectorAll(".suspend-btn[data-id]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      abrirModalSuspender(btn.getAttribute("data-id"));
+    });
+  });
+
+  // Botones reactivar
+  document.querySelectorAll(".suspend-btn[data-reactivar]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-reactivar");
+      reactivarVendedor(id);
     });
   });
 }

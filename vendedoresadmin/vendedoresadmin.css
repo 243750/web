@@ -169,13 +169,13 @@ body {
   text-align: center;
 }
 
-/* Icono de suspender (chiquito y cool) */
+/* Icono de suspender / reactivar */
 .suspend-btn {
   position: absolute;
-  bottom: 14px;
-  right: 18px;
-  width: 30px;
-  height: 30px;
+  bottom: 50px;  
+  right: 10px;    
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 2px solid #111;
   background: #ffffff;
@@ -186,17 +186,15 @@ body {
   cursor: pointer;
   transition: transform .2s ease, background .2s ease, border-color .2s ease;
   box-shadow: 0 3px 6px rgba(0,0,0,.15);
-}
-
-.suspend-btn span {
-  user-select: none;
+  z-index: 5;
 }
 
 .suspend-btn:hover {
-  transform: scale(1.08) translateY(-1px);
+  transform: scale(1.1);
   background: #ffe5e5;
   border-color: #E14B4B;
 }
+
 
 /* ================= MODAL SUSPENDER ================= */
 .modal {
